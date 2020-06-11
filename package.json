@@ -6,6 +6,7 @@
   "scripts": {
     "start:server": "node src/server.js",
     "start:server:watch": "nodemon -e yaml,js,json src/server.js",
+    "migrate": "node node_modules/db-migrate/bin/db-migrate",
     "migrate-up": "node node_modules/db-migrate/bin/db-migrate up:dev",
     "migrate-down": "node node_modules/db-migrate/bin/db-migrate down:dev",
     "migrate-up:test": "node node_modules/db-migrate/bin/db-migrate up:test -e test",
@@ -14,7 +15,7 @@
     "start-watch": "npm-run-all migrate-up start:server:watch",
     "lint": "npx eslint src/**",
     "test": "env NODE_ENV=test jest --watchAll --detectOpenHandles --testTimeout=10000",
-    "pretest": "npm run tests:reset-db"
+    "pretest": "npm-run-all migrate-down:test migrate-up:test"
   },
   "author": "",
   "license": "ISC",
