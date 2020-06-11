@@ -8,26 +8,14 @@ const connection = require('../db');
 app.use(express.json());
 app.use(cors());
 
-app.get('/animators', (req, res) => {
-  connection.query('SELECT * FROM ro_animator', (err, results) => {
-    console.log(results);
-    if (err) {
-      res.status(404).json({ message: 'bad request !' });
-    } else {
-      if (results.length) {
-        res.status(200).json(results[0]);
-      } else {
-        res.status(404).json({ error: 'Animator not found' });
-      }
-    }
-  });
-});
-
 const programRoutes = require('./routes/programRoutes');
+const animatorRoutes = require('./routes/animatorRoutes');
+
 app.use('/program', programRoutes);
+app.use('/animator', animatorRoutes);
 
 const server = app.listen(PORT, () => {
-  console.log(`🌍 Server is running on port ${PORT}`);
+  console.log(`🌍 Server is running on port ${PORT} `);
 });
 
 module.exports = server;

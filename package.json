@@ -6,9 +6,9 @@
   "scripts": {
     "start:server": "node src/server.js",
     "start:server:watch": "nodemon -e yaml,js,json src/server.js",
+    "migrate": "node node_modules/db-migrate/bin/db-migrate",
     "migrate-up": "node node_modules/db-migrate/bin/db-migrate up:dev -e dev",
     "migrate-down": "node node_modules/db-migrate/bin/db-migrate down:dev -e dev",
-    "migrate-down": "node node_modules/db-migrate/bin/db-migrate down:dev",
     "migrate-up:test": "node node_modules/db-migrate/bin/db-migrate up:test -e test",
     "migrate-down:test": "node node_modules/db-migrate/bin/db-migrate down:test -e test",
     "start": "npm-run-all migrate-up start:server",
