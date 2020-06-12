@@ -13,6 +13,7 @@ describe('should return status 200 and check object in response', () => {
     animator_description: 'Aime danser',
     animator_image: null,
   };
+
   beforeEach((done) =>
     connection.query('TRUNCATE ro_animator', () =>
       connection.query('INSERT INTO ro_animator set ?', expectedResult, done)
