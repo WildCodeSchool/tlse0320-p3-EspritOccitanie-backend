@@ -10,8 +10,24 @@ router.use(
   })
 );
 
-router.get('/create', (req, res) => {
-  res.json({ message: 'Hello World!' });
+router.post('/create', (req, res) => {
+  connection.query('INSERT INTO ro_program SET ?', req.body, (error, result) => {
+    if (error) {
+      return console.log(error);
+    }
+
+    return connection.query(
+      'SELECT * FROM ro_program WHERE program_id=?',
+      result.insertId,
+      (err, records) => {
+        if (err) {
+          console.log(err);
+        }
+
+        return res.status(200).json(records[0]);
+      }
+    );
+  });
 });
 
 module.exports = router;
