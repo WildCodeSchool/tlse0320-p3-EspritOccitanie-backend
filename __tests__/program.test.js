@@ -17,5 +17,3 @@ describe('POST - program', () => {
       });
   });
 });
-
-

@@ -7,7 +7,7 @@ router.use(express.json());
 router.use(
   express.urlencoded({
     extended: true,
-  })
+  }),
 );
 
 router.get('/', (req, res) => {
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
       res.status(404).json({ message: 'bad request !' });
     } else {
       if (results.length) {
-        res.status(200).json(results[0]);
+        res.status(200).json(results);
       } else {
         res.status(404).json({ error: 'Animator not found' });
       }
@@ -91,5 +91,23 @@ router.put('/:id/update', (req, res) => {
     });
   });
 });
+/* router.delete('/:id/delete', (req, res) => {
+  const idUser = req.params.id;
+  const { animator_firstname, animator_lastname } = req.body;
+
+  connection.query('DELETE ro_animateur SET ? WHERE animator_id = ?', [req.body, idUser], (err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Animator not delete' });
+    }
+    connection.query('SELECT * FROM ro_animator WHERE animator_id = ?', [idUser], (err, records) => {
+      if (err) {
+        return res.status(500).json({ error: err.message, sql: err.message });
+      } else {
+        return res.sendstatus(200);
+      }
+    });
+  });
+}); */
+
 
 module.exports = router;
