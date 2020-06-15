@@ -1,13 +1,11 @@
 /* eslint-disable no-undef */
 
-
 const request = require('supertest');
 const app = require('../src/server');
 const connection = require('../db');
 
 describe('Test routes podcast', () => {
   const expectPodcast = {
-    podcast_id: 1,
     podcast_title: 'Podcat1',
     podcast_duration: '50min',
     podcast_description: 'Super podcast',
@@ -16,7 +14,7 @@ describe('Test routes podcast', () => {
     podcast_creation_date: null,
     ro_category_category_id: 1,
   };
-  const valueCategorie = { category_id: 1, category_name: 'ecologie' };
+  const valueCategorie = { category_name: 'ecologie' };
 
   beforeEach((done) => connection.query('SET FOREIGN_KEY_CHECKS = 0;', done));
   beforeEach((done) => connection.query('TRUNCATE ro_podcast', done));
@@ -25,11 +23,10 @@ describe('Test routes podcast', () => {
   beforeEach((done) => connection.query('INSERT INTO ro_category SET ?', [valueCategorie], done));
   beforeEach((done) => connection.query('INSERT INTO ro_podcast SET ?', expectPodcast, done));
 
-
   it('GET /podcast - OK', (done) => {
     request(app)
-      .get('/podcast/')
-      .expect(200, expectPodcast)
+      .get('/podcast')
+      .expect(200)
       .end((err) => {
         app.close();
         if (err) return done(err);
@@ -45,7 +42,19 @@ describe('Test routes podcast', () => {
   });
 
   it('GET/ podcast by id - OK', (done) => {
-    request(app).get('/podcast/1').expect(200, expectPodcast).expect('Content-Type', /json/, done);
+    request(app)
+      .get('/podcast/1')
+      .expect(200, {
+        podcast_id: 1,
+        podcast_title: 'Podcat1',
+        podcast_duration: '50min',
+        podcast_description: 'Super podcast',
+        podcast_image: null,
+        podcast_mp3: 'podacast.mp3',
+        podcast_creation_date: null,
+        ro_category_category_id: 1,
+      })
+      .expect('Content-Type', /json/, done);
   });
 
   it('UPDATE/ podcast by id - error', (done) => {
@@ -64,7 +73,6 @@ describe('Test routes podcast', () => {
     request(app)
       .put('/podcast/1')
       .send({
-        podcast_id: 1,
         podcast_title: 'Podcatmodif',
         podcast_duration: '40min',
         podcast_description: 'modif',
@@ -90,16 +98,38 @@ describe('Test routes podcast', () => {
       });
   });
 
-  // it('DELETE/ podcast by id - error', async (done) => {
-  //   request(app)
-  //   .delete('/podcast/20')
-  //   .expect(500, {error: 'Can not delete this podcast !'}, done)
-  // });
-
-  it('DELETE/ podcast by id - OK', async (done) => {
-      request(app)
-      .delete('/podcast/1')
+  it('POST / podcast - OK', (done) => {
+    request(app)
+      .post('/podcast')
+      .send({
+        podcast_title: 'Podcast2',
+        podcast_duration: '40min',
+        podcast_description: 'new podcast',
+        podcast_image: null,
+        podcast_mp3: 'podacast.mp3',
+        podcast_creation_date: null,
+        ro_category_category_id: 1,
+      })
+      .set('Accept', 'application/json;odata=verbose')
       .expect('Content-Type', /json/)
-      .expect(200, done)
+      .expect(201)
+      .then((response) => {
+        const expected = {
+          podcast_id: expect.any(Number),
+          podcast_title: 'Podcast2',
+          podcast_duration: '40min',
+          podcast_description: 'new podcast',
+          podcast_image: null,
+          podcast_mp3: 'podacast.mp3', 
+          podcast_creation_date: null,
+          ro_category_category_id: 1,
+        };
+        expect(response.body).toEqual(expected);
+        done();
+      });
+  });
+
+  it('DELETE/ podcast by id - OK', (done) => {
+    request(app).delete('/podcast/1').expect('Content-Type', /json/).expect(200, done);
   });
 });
