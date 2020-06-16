@@ -88,6 +88,8 @@ router.post('/', (req, res) => {
               if (err) {
                 return res.status(500).json({ error: err.message, sql: err.message });
               } else {
+                console.log(records);
+
                 return res.status(201).json(records[0]);
               }
             }
