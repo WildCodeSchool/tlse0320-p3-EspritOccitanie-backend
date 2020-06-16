@@ -1,0 +1,45 @@
+### Get all podcast
+GET http://localhost:3001/podcast
+
+### Get podcast by id
+GET http://localhost:3001/podcast/4
+
+### Post a podcast (json)
+POST http://localhost:3001/podcast
+Accept: application/json
+Content-Type: application/json
+
+
+    {
+      "podcast_title": "Podcast2",
+      "podcast_duration": "40min",
+      "podcast_description": "new podcast",
+      "podcast_image": null,
+      "podcast_mp3": "podacast.mp3",
+      "ro_category_category_id": 1
+    }
+
+
+
+
+
+
+
+
+
+### Update a podcast
+PUT http://localhost:3001/podcast/4
+Content-Type: application/json
+
+{
+    "podcast_title": "update podcast",
+    "podcast_duration": "40min",
+    "podcast_description": "bla bla bla",
+    "podcast_image": null,
+    "podcast_mp3": "podacast.mp3",
+    "podcast_creation_date": null,
+    "ro_category_category_id": 1
+}
+
+### Delete a podcast
+DELETE http://localhost:3001/podcast/4

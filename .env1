@@ -1,0 +1,11 @@
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASS=m@trixsql
+DB_NAME=radiodb_eo
+
+DB_HOST_TEST=localhost
+DB_PORT_TEST=3306
+DB_USER_TEST=root
+DB_PASS_TEST=m@trixsql
+DB_NAME_TEST=radiodb_eo_test

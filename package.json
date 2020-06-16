@@ -20,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "db-migrate-mysql": "^2.1.1",
     "dotenv": "^8.2.0",
