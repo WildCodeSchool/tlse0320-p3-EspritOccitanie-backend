@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-//
+//IF EXISTS
 // users routes tests
 const request = require('supertest');
 const app = require('../src/server');
@@ -30,13 +30,15 @@ describe('Program - test (post/get/udapte/delete)', () => {
 
   const valueCategorie = { category_id: 1, category_name: 'ecologie' };
 
-  beforeEach((done) => connection.query('SET FOREIGN_KEY_CHECKS = 0;', done));
-  beforeEach((done) => connection.query('TRUNCATE ro_program', done));
-  beforeEach((done) => connection.query('TRUNCATE ro_category', done));
+  beforeEach((done) => connection.query('SET FOREIGN_KEY_CHECKS = 0;', () => {
+    connection.query('TRUNCATE ro_program', () => {
+      connection.query('TRUNCATE ro_category', () => {
+        connection.query('INSERT INTO ro_category set ?', [valueCategorie], done)
+      });
+    });
+  }));
 
-  beforeEach((done) => connection.query('INSERT INTO ro_category set ?', [valueCategorie], done));
-
-  it('POST / create a new programm with all values - OK', async (done) => {
+  it('POST / create a new program with all values - OK', async (done) => {
     request(app)
       .post('/program/create')
       .send(dataProgram)

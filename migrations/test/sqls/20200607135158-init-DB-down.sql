@@ -1,18 +1,18 @@
 /* Replace with your SQL commands */
-TRUNCATE TABLE `ro_animator`;
+SET FOREIGN_KEY_CHECKS = 0; 
 
-TRUNCATE TABLE `ro_category`;
+DROP TABLE IF EXISTS `ro_admin`;
+DROP TABLE IF EXISTS `ro_animator`;
+DROP TABLE IF EXISTS `ro_animator_has_ro_progam`;
+DROP TABLE IF EXISTS `ro_category`;
+DROP TABLE IF EXISTS `ro_planning`;
+DROP TABLE IF EXISTS `ro_program`;
+DROP TABLE IF EXISTS `ro_podcast`;
+DROP TABLE IF EXISTS `ro_planning_has_ro_podcast`;
+DROP TABLE IF EXISTS `ro_tag`;
+DROP TABLE IF EXISTS `ro_podcast_has_ro_animator`;
+DROP TABLE IF EXISTS `ro_podcast_has_ro_tag`;
+DROP TABLE IF EXISTS `ro_program_has_ro_planning`;
+DROP TABLE IF EXISTS `ro_tag_has_ro_program`;
 
-TRUNCATE TABLE `ro_program`;
-
--- TRUNCATE TABLE `ro_admin`;
--- TRUNCATE TABLE `ro_animator_has_ro_progam`;
--- TRUNCATE TABLE `ro_category`;
--- TRUNCATE TABLE `ro_planning`;
--- TRUNCATE TABLE `ro_planning_has_ro_podcast`;
--- TRUNCATE TABLE `ro_podcast_has_ro_animator`;
--- TRUNCATE TABLE `ro_podcast_has_ro_tag`;
--- TRUNCATE TABLE `ro_program`;
--- TRUNCATE TABLE `ro_program_has_ro_planning`;
--- TRUNCATE TABLE `ro_podcast_has_ro_tag`;
--- TRUNCATE TABLE `ro_podcast_has_ro_tag`;
+SET FOREIGN_KEY_CHECKS = 1; 

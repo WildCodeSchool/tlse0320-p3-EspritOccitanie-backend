@@ -24,12 +24,10 @@ router.post('/create', (req, res) => {
   return connection.query('INSERT INTO ro_program SET ?', req.body, (error, result) => {
     if (error) {
       if (error.errno === 1064) {
-        console.log(error);
         return res.status(400).json({ error: 'invalid request', errorMessage: error.errno });
       }
 
       if (error.errno === 1364) {
-        console.log(error);
         return res.status(400).json({
           error: 'ER_NO_DEFAULT_FOR_FIELD',
           errorMessage: error.errno,
@@ -46,7 +44,7 @@ router.post('/create', (req, res) => {
           console.log(err);
         }
         return res.status(200).json(records[0]);
-      }
+      },
     );
   });
 });

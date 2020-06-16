@@ -14,8 +14,8 @@
     "start": "npm-run-all migrate-up start:server",
     "start-watch": "npm-run-all migrate-up start:server:watch",
     "lint": "npx eslint src/**",
-    "test": "env NODE_ENV=test jest --watchAll --detectOpenHandles",
-    "tests:reset-db": "npm-run-all migrate-down:test migrate-up:test"
+    "test": "env NODE_ENV=test jest --watchAll --detectOpenHandles --testTimeout=10000",
+    "pretest": "npm-run-all migrate-down:test migrate-up:test"
   },
   "author": "",
   "license": "ISC",
