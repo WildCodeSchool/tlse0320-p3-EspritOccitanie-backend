@@ -56,7 +56,7 @@ router.put('/:id', (req, res) => {
       if (err) {
         return res.status(500).json({ error: 'Bad request !' });
       } else {
-        return res.status(200).json(records[0]);
+        return res.status(200).json(records);
       }
     });
   });
@@ -72,7 +72,7 @@ router.post('/', (req, res) => {
     podcast_creation_date,
     ro_category_category_id,
   } = req.body;
-  console.log('reeessultat', req.body);
+
   try {
     if (!podcast_title || !podcast_mp3 || !ro_category_category_id) {
       return res.status(422).json({ error: 'Missing field(s) !' });
