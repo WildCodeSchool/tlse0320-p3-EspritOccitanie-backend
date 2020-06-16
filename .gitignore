@@ -5,3 +5,6 @@ package-lock.json
 # dotenv environment variables file
 .env
 .env.test
+
+#VS code
+.code-workspace
