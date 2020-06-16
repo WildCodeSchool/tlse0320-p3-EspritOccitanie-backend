@@ -7,28 +7,27 @@ const connection = require('../db');
 
 describe('should return status 200 and check object in response', () => {
   const expectedResult = {
-    animator_id: 1,
     animator_firstname: 'Roger',
     animator_lastname: 'Labbit',
     animator_description: 'Aime danser',
     animator_image: null,
   };
-  beforeEach((done) =>
-    connection.query('TRUNCATE ro_animator', () =>
-      connection.query('INSERT INTO ro_animator set ?', expectedResult, done)
-    )
-  );
 
-  // it('returns status 200', async (done) => {
-  //   request(app)
-  //     .get('/animators')
-  //     .expect(200, expectedResult)
-  //     .end((err) => {
-  //       app.close();
-  //       if (err) return done(err);
-  //       return done();
-  //     });
-  // });
+  beforeEach((done) => connection.query('SET FOREIGN_KEY_CHECKS = 0;', done));
+  beforeEach((done) => connection.query('TRUNCATE ro_animator', done));
+  beforeEach((done) => connection.query('TRUNCATE ro_animator_has_ro_progam', done));
+  beforeEach((done) => connection.query('INSERT INTO ro_animator SET ?', expectedResult, done));
+
+  it('returns status 200', (done) => {
+    request(app)
+      .get('/animator')
+      .expect(200)
+      .end((err) => {
+        app.close();
+        if (err) return done(err);
+        return done();
+      });
+  });
 
   it('POST /animator - error', (done) => {
     request(app)
@@ -83,7 +82,7 @@ describe('should return status 200 and check object in response', () => {
 
   it('UPDATE/ animator by id - error', (done) => {
     request(app)
-      .put('/animator/1/update')
+      .put('/animator/1')
       .send({
         animator_firstname: '',
         animator_lastname: '',
@@ -94,27 +93,25 @@ describe('should return status 200 and check object in response', () => {
       .expect(404, { error: 'Missing firstname or lastname !' }, done);
   });
 
-  // it('UPDATE/ aniamtor by id - OK', (done) => {
-  //   request(app)
-  //     .put('/animator/1/update')
-  //     .send({
-  //       animator_id: 1,
-  //       animator_firstname: 'John',
-  //       animator_lastname: 'Doe',
-  //       animator_description: 'Développeur',
-  //       animator_image: null,
-  //     })
-  //     .expect('Content-Type', /json/)
-  //     .then((response) => {
-  //       const expected = {
-  //         animator_id: 1,
-  //         animator_firstname: 'John',
-  //         animator_lastname: 'Doe',
-  //         animator_description: 'Développeur',
-  //         animator_image: null,
-  //       };
-  //       expect(response.body).toEqual(expected);
-  //       done();
-  //     });
-  // });
+  it('UPDATE/ aniamtor by id - OK', (done) => {
+    request(app)
+      .put('/animator/1')
+      .send({
+        animator_firstname: 'John',
+        animator_lastname: 'Doe',
+        animator_description: 'Développeur',
+        animator_image: null,
+      })
+      .expect('Content-Type', /json/)
+      .then((response) => {
+        const expected = {
+          animator_firstname: 'John',
+          animator_lastname: 'Doe',
+          animator_description: 'Développeur',
+          animator_image: null,
+        };
+        expect(response.body).toEqual(expected);
+        done();
+      });
+  });
 });

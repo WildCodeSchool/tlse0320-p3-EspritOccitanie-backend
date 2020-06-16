@@ -1,0 +1,17 @@
+### Get all animator
+GET http://localhost:3001/animator
+
+### Get all animator
+GET http://localhost:3001/animator/3
+
+### Post a animator (json)
+POST http://localhost:3001/animator
+Accept: application/json;odata=verbose;
+Content-Type: application/json;
+
+{
+    "animator_firstname": "jerome1",
+    "animator_lastname": "The_Best",
+    "animator_description": "Animateur web developper",
+    "animator_image": null
+}
