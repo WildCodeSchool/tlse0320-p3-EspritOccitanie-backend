@@ -13,7 +13,6 @@ describe('should return status 200 and check object in response', () => {
     animator_image: null,
   };
   beforeEach((done) => connection.query('TRUNCATE ro_animator', () => connection.query('INSERT INTO ro_animator set ?', expectedResult, done)));
-
   beforeEach((done) => connection.query('SET FOREIGN_KEY_CHECKS = 0;', done));
   beforeEach((done) => connection.query('TRUNCATE ro_animator', done));
   beforeEach((done) => connection.query('TRUNCATE ro_animator_has_ro_progam', done));
