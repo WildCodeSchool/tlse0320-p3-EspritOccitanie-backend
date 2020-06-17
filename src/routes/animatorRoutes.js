@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
       return res.status(500).json({ error: err.message, sql: err.sql });
     }
 
-    connection.query(
+    return connection.query(
       'SELECT * FROM ro_animator WHERE animator_id = ?',
       results.insertId,
       (err2, records) => {
@@ -56,8 +56,6 @@ router.get('/:id', (req, res) => {
       return res.status(200).json(result[0]);
     }
     return res.status(404).json({ error: 'Animator not in DB' });
-
-
   });
 });
 
@@ -71,8 +69,8 @@ router.put('/:id', (req, res) => {
     if (err) {
       return res.status(500).json({ error: 'Animator not update' });
     }
-    connection.query('SELECT * FROM ro_animator WHERE animator_id = ?', [id], (err, records) => {
-      if (err) {
+    return connection.query('SELECT * FROM ro_animator WHERE animator_id = ?', [id], (err2, records) => {
+      if (err2) {
         return res.status(500).json({ error: err.message, sql: err.message });
       }
       return res.status(200).json(records[0]);

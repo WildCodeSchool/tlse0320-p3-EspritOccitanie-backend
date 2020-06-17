@@ -49,8 +49,8 @@ router.put('/:id', (req, res) => {
     if (err) {
       return res.status(500).json({ error: 'Podcast not update' });
     }
-    connection.query('SELECT * FROM ro_podcast WHERE podcast_id = ?', [id], (err, records) => {
-      if (err) {
+    return connection.query('SELECT * FROM ro_podcast WHERE podcast_id = ?', [id], (err2, records) => {
+      if (err2) {
         return res.status(500).json({ error: 'Bad request !' });
       }
       return res.status(200).json(records[0]);
@@ -70,11 +70,11 @@ router.post('/', (req, res) => {
     if (!podcast_title || !podcast_mp3 || !ro_category_category_id) {
       return res.status(422).json({ error: 'Missing field(s) !' });
     }
-    connection.query('INSERT INTO ro_podcast SET ?', req.body, (err, results) => {
+    return connection.query('INSERT INTO ro_podcast SET ?', req.body, (err, results) => {
       if (err) {
         return res.status(500).json({ error: err.message, sql: err.sql });
       }
-      connection.query(
+      return connection.query(
         'SELECT * FROM ro_podcast WHERE podcast_id = ?',
         results.insertId,
         (err2, records) => {
@@ -86,7 +86,7 @@ router.post('/', (req, res) => {
       );
     });
   } catch (e) {
-    console.err(e);
+    return e(e);
   }
 });
 
