@@ -64,6 +64,10 @@ describe('Test routes podcast', () => {
       .expect('Content-Type', /json/, done);
   });
 
+  it('DELETE/ podcast by id - OK', (done) => {
+    request(app).delete('/podcast/1').expect('Content-Type', /json/).expect(200, done);
+  });
+
   it('UPDATE/ podcast by id - error', (done) => {
     request(app)
       .put('/podcast/1')
@@ -80,7 +84,7 @@ describe('Test routes podcast', () => {
     request(app)
       .put('/podcast/1')
       .send({
-        podcast_title: 'Podcastmodif',
+        podcast_title: 'Podcatmodif',
         podcast_duration: '40min',
         podcast_description: 'modif',
         podcast_image: null,
@@ -102,7 +106,7 @@ describe('Test routes podcast', () => {
         };
         expect(response.body).toEqual(expected);
         done();
-      });
+      }); 
   });
 
   it('POST / podcast - OK', (done) => {
@@ -134,9 +138,5 @@ describe('Test routes podcast', () => {
         expect(response.body).toEqual(expected);
         done();
       });
-  });
-
-  it('DELETE/ podcast by id - OK', (done) => {
-    request(app).delete('/podcast/1').expect('Content-Type', /json/).expect(200, done);
   });
 });

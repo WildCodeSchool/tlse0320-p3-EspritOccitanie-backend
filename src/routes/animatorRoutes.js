@@ -13,12 +13,12 @@ router.use(
 router.get('/', (req, res) => {
   connection.query('SELECT * FROM ro_animator', (err, results) => {
     if (err) {
-      res.status(404).json({ message: 'bad request !' });
+      return res.status(404).json({ message: 'bad request !' });
     } else {
       if (results.length) {
-        res.status(200).json(results);
+        return res.status(200).json(results);
       } else {
-        res.status(404).json({ error: 'Animator not found' });
+        return res.status(404).json({ error: 'Animator not found' });
       }
     }
   });
@@ -67,14 +67,15 @@ router.put('/:id', (req, res) => {
   const id = req.params.id;
   const { animator_firstname, animator_lastname } = req.body;
   if (!animator_firstname || !animator_lastname) {
-    res.status(404).json({ error: 'Missing firstname or lastname !' });
+    return res.status(404).json({ error: 'Missing firstname or lastname !' });
   }
-  connection.query('UPDATE ro_animateur SET ? WHERE animator_id = ?', [req.body, id], (err) => {
+  connection.query('UPDATE ro_animator SET ? WHERE animator_id = ?', [req.body, id], (err) => {
     if (err) {
       return res.status(500).json({ error: 'Animator not update' });
     }
     connection.query('SELECT * FROM ro_animator WHERE animator_id = ?', [id], (err, records) => {
       if (err) {
+        console.log('ddddd');
         return res.status(500).json({ error: err.message, sql: err.message });
       } else {
         return res.status(200).json(records[0]);
@@ -82,6 +83,7 @@ router.put('/:id', (req, res) => {
     });
   });
 });
+
 /* router.delete('/:id/delete', (req, res) => {
   const idUser = req.params.id;
   const { animator_firstname, animator_lastname } = req.body;

@@ -19,6 +19,22 @@ Content-Type: application/json
       "ro_category_category_id": 1
     }
 
+### Update a podcast
+PUT  http://localhost:3001/podcast/1
+Content-Type: application/json
+
+{
+  "podcast_title": "Podcast2",
+  "podcast_duration": "40min",
+  "podcast_description": "new podcast",
+  "podcast_image": null,
+  "podcast_mp3": "podacast.mp3",
+  "ro_category_category_id": 1
+}
+
+###Delete a podcast
+DELETE http://localhost:3001/podcast/2
+
 
 
 

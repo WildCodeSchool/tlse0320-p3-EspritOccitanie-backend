@@ -12,11 +12,16 @@ describe('should return status 200 and check object in response', () => {
     animator_description: 'Aime danser',
     animator_image: null,
   };
-  beforeEach((done) => connection.query('TRUNCATE ro_animator', () => connection.query('INSERT INTO ro_animator set ?', expectedResult, done)));
-  beforeEach((done) => connection.query('SET FOREIGN_KEY_CHECKS = 0;', done));
-  beforeEach((done) => connection.query('TRUNCATE ro_animator', done));
-  beforeEach((done) => connection.query('TRUNCATE ro_animator_has_ro_progam', done));
-  beforeEach((done) => connection.query('INSERT INTO ro_animator SET ?', expectedResult, done));
+
+  beforeEach((done) => {
+    connection.query('SET FOREIGN_KEY_CHECKS = 0;', () => {
+      connection.query('TRUNCATE ro_animator', () => {
+        connection.query('TRUNCATE ro_animator_has_ro_progam', () => {
+          connection.query('INSERT INTO ro_animator SET ?', expectedResult, done);
+        });
+      });
+    });
+  });
 
   it('returns status 200', (done) => {
     request(app)
@@ -105,6 +110,7 @@ describe('should return status 200 and check object in response', () => {
       .expect('Content-Type', /json/)
       .then((response) => {
         const expected = {
+          animator_id: expect.any(Number),
           animator_firstname: 'John',
           animator_lastname: 'Doe',
           animator_description: 'Développeur',

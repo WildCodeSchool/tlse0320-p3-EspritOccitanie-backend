@@ -46,7 +46,7 @@ router.put('/:id', (req, res) => {
   const id = req.params.id;
   const { podcast_title, podcast_description, podcast_mp3 } = req.body;
   if (!podcast_title || !podcast_description || !podcast_mp3) {
-    res.status(404).json({ error: 'Missing field(s) !' });
+    return res.status(404).json({ error: 'Missing field(s) !' });
   }
   connection.query('UPDATE ro_podcast SET ? WHERE podcast_id = ?', [req.body, id], (err) => {
     if (err) {
@@ -56,7 +56,7 @@ router.put('/:id', (req, res) => {
       if (err) {
         return res.status(500).json({ error: 'Bad request !' });
       } else {
-        return res.status(200).json(records);
+        return res.status(200).json(records[0]);
       }
     });
   });
@@ -88,8 +88,6 @@ router.post('/', (req, res) => {
               if (err) {
                 return res.status(500).json({ error: err.message, sql: err.message });
               } else {
-                console.log(records);
-
                 return res.status(201).json(records[0]);
               }
             }

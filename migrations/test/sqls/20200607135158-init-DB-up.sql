@@ -61,8 +61,8 @@ CREATE TABLE `ro_animator_has_ro_progam` (
   PRIMARY KEY (`ro_animator_animator_id`,`ro_program_program_id`),
   KEY `fk_ro_animator_has_ro_progam_ro_progam1_idx` (`ro_program_program_id`),
   KEY `fk_ro_animator_has_ro_progam_ro_animator1_idx` (`ro_animator_animator_id`),
-  CONSTRAINT `fk_ro_animator_has_ro_progam_ro_animator1` FOREIGN KEY (`ro_animator_animator_id`) REFERENCES `ro_animator` (`animator_id`),
-  CONSTRAINT `fk_ro_animator_has_ro_progam_ro_progam1` FOREIGN KEY (`ro_program_program_id`) REFERENCES `ro_program` (`program_id`)
+  CONSTRAINT `fk_ro_animator_has_ro_progam_ro_animator1` FOREIGN KEY (`ro_animator_animator_id`) REFERENCES `ro_animator` (`animator_id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `fk_ro_animator_has_ro_progam_ro_progam1` FOREIGN KEY (`ro_program_program_id`) REFERENCES `ro_program` (`program_id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
