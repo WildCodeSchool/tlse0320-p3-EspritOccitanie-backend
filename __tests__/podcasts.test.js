@@ -16,12 +16,19 @@ describe('Test routes podcast', () => {
   };
   const valueCategorie = { category_name: 'ecologie' };
 
-  beforeEach((done) => connection.query('SET FOREIGN_KEY_CHECKS = 0;', done));
-  beforeEach((done) => connection.query('TRUNCATE ro_podcast', done));
-  beforeEach((done) => connection.query('TRUNCATE ro_planning_has_ro_podcast', done));
-  beforeEach((done) => connection.query('TRUNCATE ro_category', done));
-  beforeEach((done) => connection.query('INSERT INTO ro_category SET ?', [valueCategorie], done));
-  beforeEach((done) => connection.query('INSERT INTO ro_podcast SET ?', expectPodcast, done));
+  beforeEach((done) => {
+    connection.query('SET FOREIGN_KEY_CHECKS = 0', () => {
+      connection.query('TRUNCATE ro_podcast', () => {
+        connection.query('TRUNCATE ro_planning_has_ro_podcast', () => {
+          connection.query('TRUNCATE ro_category', () => {
+            connection.query('INSERT INTO ro_category SET ?', [valueCategorie], () => {
+              connection.query('INSERT INTO ro_podcast SET ?', expectPodcast, done);
+            });
+          });
+        });
+      });
+    });
+  });
 
   it('GET /podcast - OK', (done) => {
     request(app)
@@ -73,7 +80,7 @@ describe('Test routes podcast', () => {
     request(app)
       .put('/podcast/1')
       .send({
-        podcast_title: 'Podcatmodif',
+        podcast_title: 'Podcastmodif',
         podcast_duration: '40min',
         podcast_description: 'modif',
         podcast_image: null,
