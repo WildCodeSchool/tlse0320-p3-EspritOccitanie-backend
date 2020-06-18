@@ -11,15 +11,9 @@ router.use(
 );
 
 router.post('/create', (req, res) => {
-  const { program_title, ro_category_category_id } = req.body;
-
   if (!req.body) {
     return res.statut(400);
   }
-
-  // if (!program_title || !ro_category_category_id) {
-  //   return res.statut(400, {error});
-  // }
 
   return connection.query('INSERT INTO ro_program SET ?', req.body, (error, result) => {
     if (error) {
@@ -33,25 +27,18 @@ router.post('/create', (req, res) => {
           errorMessage: error.errno,
         });
       }
-
-      return console.log(error);
     }
     return connection.query(
       'SELECT * FROM ro_program WHERE program_id=?',
       result.insertId,
       (err, records) => {
         if (err) {
-          console.log(err);
+          return res.status(404);
         }
         return res.status(200).json(records[0]);
       },
     );
   });
-});
-
-router.delete('/:id/delete', (req, res) => {
-  const { id } = req.params;
-  console.log(req.params);
 });
 
 module.exports = router;

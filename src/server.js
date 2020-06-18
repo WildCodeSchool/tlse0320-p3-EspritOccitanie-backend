@@ -4,7 +4,6 @@ const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || (process.env.NODE_ENV === 'test' ? 3001 : 3000);
-const connection = require('../db');
 
 app.use(express.json());
 app.use(cors());

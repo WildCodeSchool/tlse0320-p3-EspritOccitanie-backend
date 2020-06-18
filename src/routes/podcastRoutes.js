@@ -79,7 +79,7 @@ router.post('/', (req, res) => {
         results.insertId,
         (err2, records) => {
           if (err2) {
-            return res.status(500).json({ error: err.message, sql: err.message });
+            return res.status(500).json({ error: err2.message, sql: err.message });
           }
           return res.status(201).json(records[0]);
         },
