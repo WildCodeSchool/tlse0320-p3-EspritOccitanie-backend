@@ -25,6 +25,9 @@ npm run start-watch
 ```
 
 ## To run tests
+
+Before each test, the testing database is reset with the config provided in */migrations* dir
+
 ```sh
 npm test
 ```
