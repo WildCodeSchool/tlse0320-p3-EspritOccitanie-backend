@@ -11,7 +11,7 @@ describe('Test routes podcast', () => {
     podcast_description: 'Super podcast',
     podcast_image: null,
     podcast_mp3: 'podacast.mp3',
-    podcast_creation_date: null,
+    podcast_creation_date: '2017-08-08 10:00:00',
     ro_category_category_id: 1,
   };
   const valueCategorie = { category_name: 'ecologie' };
@@ -58,7 +58,7 @@ describe('Test routes podcast', () => {
         podcast_description: 'Super podcast',
         podcast_image: null,
         podcast_mp3: 'podacast.mp3',
-        podcast_creation_date: null,
+        podcast_creation_date: '2017-08-08T08:00:00.000Z',
         ro_category_category_id: 1,
       })
       .expect('Content-Type', /json/, done);
@@ -106,7 +106,7 @@ describe('Test routes podcast', () => {
         };
         expect(response.body).toEqual(expected);
         done();
-      }); 
+      });
   });
 
   it('POST / podcast - OK', (done) => {
@@ -118,7 +118,7 @@ describe('Test routes podcast', () => {
         podcast_description: 'new podcast',
         podcast_image: null,
         podcast_mp3: 'podacast.mp3',
-        podcast_creation_date: null,
+        podcast_creation_date: '2017-08-08 10:00:00',
         ro_category_category_id: 1,
       })
       .set('Accept', 'application/json;odata=verbose')
@@ -132,7 +132,7 @@ describe('Test routes podcast', () => {
           podcast_description: 'new podcast',
           podcast_image: null,
           podcast_mp3: 'podacast.mp3',
-          podcast_creation_date: null,
+          podcast_creation_date: '2017-08-08T08:00:00.000Z',
           ro_category_category_id: 1,
         };
         expect(response.body).toEqual(expected);

@@ -127,7 +127,7 @@ CREATE TABLE `ro_podcast` (
   `podcast_description` text,
   `podcast_image` varchar(255) DEFAULT NULL,
   `podcast_mp3` varchar(255) DEFAULT NULL,
-  `podcast_creation_date` datetime DEFAULT NULL,
+  `podcast_creation_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ro_category_category_id` int NOT NULL,
   PRIMARY KEY (`podcast_id`,`ro_category_category_id`),
   KEY `fk_ro_podcast_ro_category1_idx` (`ro_category_category_id`),
