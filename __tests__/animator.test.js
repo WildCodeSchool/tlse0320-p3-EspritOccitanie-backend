@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 // users routes tests
-const request = require('supertest');
+/* const request = require('supertest');
 const app = require('../src/server');
 const connection = require('../db');
 
@@ -121,3 +121,4 @@ describe('should return status 200 and check object in response', () => {
       });
   });
 });
+ */

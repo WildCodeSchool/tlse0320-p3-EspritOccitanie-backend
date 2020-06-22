@@ -49,4 +49,7 @@ class AnimatorModel {
     }
 }
 
-module.exports = AnimatorModel;
+module.exports = { AnimatorModel };
+
+
+
