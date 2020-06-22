@@ -16,5 +16,11 @@
         "ecmaVersion": 11
     },
     "rules": {
+        "camelcase": [
+            "warn",
+            {
+                "properties": "never"
+            }
+        ]
     }
 }
