@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 //IF EXISTS
 // users routes tests
-const request = require('supertest');
+/* const request = require('supertest');
 const app = require('../src/server');
 const connection = require('../db');
-
+ */
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 // CREATE TABLE `ro_program` (
@@ -20,7 +20,7 @@ const connection = require('../db');
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-describe('Program - test (post/get/udapte/delete)', () => {
+/* describe('Program - test (post/get/udapte/delete)', () => {
   const dataProgram = {
     program_title: 'Oiseau blanc',
     program_description: 'description de émission osieau blanc',
@@ -120,4 +120,4 @@ describe('Program - test (post/get/udapte/delete)', () => {
   //     .delete('/program/1/delete')
   //     .expect(400, { error: 'ER_NO_DEFAULT_FOR_FIELD', errorMessage: 1364 }, done);
   // });
-});
+}); */

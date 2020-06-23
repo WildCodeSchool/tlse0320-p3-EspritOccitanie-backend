@@ -24,6 +24,19 @@ router.get('/', (req, res) => {
   });
 });
 
+// GET ALL PODCASTS by date DESC
+router.get('/date', (req, res) => {
+  connection.query('SELECT *, DATE_FORMAT(podcast_creation_date, "%d/%m/%Y") FROM ro_podcast order by podcast_creation_date desc limit 4', (err, results) => {
+    if (err) {
+      return res.status(404).json({ message: 'Bad request !' });
+    }
+    if (results.length) {
+      return res.status(200).json(results);
+    }
+    return res.status(404).json({ error: 'Podcast not found' });
+  });
+});
+
 // GET PODCAST BY ID
 router.get('/:id', (req, res) => {
   const { id } = req.params;
@@ -64,10 +77,11 @@ router.post('/', (req, res) => {
     podcast_title,
     podcast_mp3,
     ro_category_category_id,
+    podcast_creation_date,
   } = req.body;
 
   try {
-    if (!podcast_title || !podcast_mp3 || !ro_category_category_id) {
+    if (!podcast_title || !podcast_mp3 || !ro_category_category_id || !podcast_creation_date) {
       return res.status(422).json({ error: 'Missing field(s) !' });
     }
     return connection.query('INSERT INTO ro_podcast SET ?', req.body, (err, results) => {

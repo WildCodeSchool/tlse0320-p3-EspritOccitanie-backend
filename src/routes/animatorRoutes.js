@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
+/* router.post('/', (req, res) => {
   const { animator_firstname, animator_lastname } = req.body;
   if (!animator_firstname || !animator_lastname) {
     return res.status(422).json({ error: 'required field(s) missing' });
@@ -44,7 +44,7 @@ router.post('/', (req, res) => {
       },
     );
   });
-});
+}); */
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
