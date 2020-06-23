@@ -10,10 +10,12 @@ app.use(cors());
 const programRoutes = require('./routes/programRoutes');
 const animatorRoutes = require('./routes/animatorRoutes');
 const podcastRoutes = require('./routes/podcastRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
 
 app.use('/program', programRoutes);
 app.use('/animator', animatorRoutes);
 app.use('/podcast', podcastRoutes);
+app.use('/category', categoryRoutes);
 
 const server = app.listen(PORT, () => {
   console.log(`🌍 Server is running on port ${PORT} `);

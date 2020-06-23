@@ -1,0 +1,17 @@
+### GET all category
+GET http://localhost:3001/category
+
+### GET category by id
+GET http://localhost:3001/category/2
+
+
+### POST a category
+POST http://localhost:3001/category/
+Content-Type: application/json
+
+{
+    "category_name": "new category"
+}
+
+### DELETE a category
+DELETE http://localhost:3001/category/2
