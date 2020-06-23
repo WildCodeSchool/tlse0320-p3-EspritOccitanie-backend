@@ -7,6 +7,12 @@ class CategoryModel {
       callback(err, results);
     });
   }
+
+  static getAllCategory(req, callback) {
+    connection.query('SELECT * FROM ro_category', (err, results) => {
+      callback(err, results);
+    });
+  }
 }
 
 module.exports = { CategoryModel };
