@@ -15,9 +15,6 @@ const checkCategoryForm = [
     .withMessage('invalid number caracteres')
     .trim()
     .escape(),
-
 ];
-
-
 
 module.exports = { checkCategoryForm };

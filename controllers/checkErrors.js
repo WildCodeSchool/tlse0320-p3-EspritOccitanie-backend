@@ -7,7 +7,7 @@ class Check {
     const errorsAnimatorValidation = validationResult(req);
 
     if (!errorsAnimatorValidation.isEmpty()) {
-      console.log(errorsAnimatorValidation.errors);
+    //   console.log(errorsAnimatorValidation.errors);
       if (errorsAnimatorValidation.errors.find((error) => error.msg === 'value undefined')) {
         return res.status(500).json({ error: 'value undefined' });
       }
