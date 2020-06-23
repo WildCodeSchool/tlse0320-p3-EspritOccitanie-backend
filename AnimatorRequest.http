@@ -1,12 +1,12 @@
-### Get all animator
+### Get all animators
 GET http://localhost:3001/animator
 
-### Get all animator
+### Get an animator by ID
 GET http://localhost:3001/animator/1
 
-### Post a animator (json)
+### Post an animator (json)
 POST http://localhost:3001/animator
-Content-Type: application/json;
+Content-Type: application/json
 
 {
     "animator_firstname": "jerome1",
@@ -15,9 +15,9 @@ Content-Type: application/json;
     "animator_image": null
 }
 
-### Update a animator
+### Update an animator
 PUT http://localhost:3001/animator/1
-Content-Type: application/json;
+Content-Type: application/json
 
 {
     "animator_firstname": "Jean",
@@ -25,3 +25,6 @@ Content-Type: application/json;
     "animator_description": "Animateur web",
     "animator_image": null
 }
+
+### Delete an animator
+DELETE http://localhost:3001/animator/1

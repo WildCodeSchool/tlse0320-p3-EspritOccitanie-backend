@@ -63,11 +63,10 @@ router.post('/', (req, res) => {
   const {
     podcast_title,
     podcast_mp3,
-    ro_category_category_id,
   } = req.body;
-
+  console.log('podcasttttttt', req.body);
   try {
-    if (!podcast_title || !podcast_mp3 || !ro_category_category_id) {
+    if (!podcast_title || !podcast_mp3) {
       return res.status(422).json({ error: 'Missing field(s) !' });
     }
     return connection.query('INSERT INTO ro_podcast SET ?', req.body, (err, results) => {
