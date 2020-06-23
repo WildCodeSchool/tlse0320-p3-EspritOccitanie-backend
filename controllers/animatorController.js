@@ -4,24 +4,66 @@ const { AnimatorModel } = require('../models/animatorModel');
 
 class AnimatorController {
     static postAnimator(req, res) {
-        const { animator_firstname, animator_lastname } = req.body;
-        try {
-            AnimatorModel.postAnimator(req.body, () => {
-                if (!animator_firstname || !animator_lastname) {
-                    res.status(422).json({ error: 'All fields have to be completed' });
-                } else {
-                    res.status(200).json(req.body);
-                }
-            });
-        } catch (err) {
-            res.status(500).json({ error: 'Something bad happenned' });
-        }
+
+        AnimatorModel.postAnimator(req, (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: `${err}`, data: 'refq' });
+            }
+
+            return res
+                .status(200)
+                .json({ message: 'OK', dataSend: req.body, affectedRows: results.affectedRows });
+        });
     }
+
+
+
+
+    static getAllAnimator(req, res) {
+
+        AnimatorModel.getAllAnimator(req, (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: `${err}` });
+            }
+
+            return res
+                .status(200)
+                .json(results);
+        });
+    }
+
+
+
+    static delAnimator(req, res) {
+
+        AnimatorModel.delAnimator(req, (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: `${err}` });
+            }
+            // console.log(results);
+            return res
+                .status(200)
+                .json(results);
+        });
+    }
+
+
+    static putAnimator(req, res) {
+
+
+
+        AnimatorModel.putAnimator(req, (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: `${err}` });
+            }
+            // console.log(results);
+            return res
+                .status(200)
+                .json(results);
+        });
+    }
+
 }
 
+
 module.exports = { AnimatorController };
-
-
-
-
-

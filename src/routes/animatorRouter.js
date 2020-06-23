@@ -10,10 +10,9 @@
 // module.exports = animatorRouter;
 
 
-
 const { AnimatorController } = require('../../controllers/animatorController');
 const express = require('express');
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 
 router.use(express.json());
@@ -25,18 +24,10 @@ router.use(
 
 
 router.post('/', AnimatorController.postAnimator);
-// router.get('/', animatorController.getAllAnimator);
-// router.get('/:id', animatorController.getOneAnimator);
-// router.delete('/:id', animatorController.delAnimator);
-// router.put('/:id', animatorController.putAnimator);
+router.get('/', AnimatorController.getAllAnimator);
+router.put('/:id', AnimatorController.putAnimator);
+router.delete('/:id', AnimatorController.delAnimator);
+// router.get('/:id', AnimatorController.getOneAnimator);
+
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
