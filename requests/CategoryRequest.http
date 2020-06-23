@@ -1,0 +1,10 @@
+### POST a category
+POST http://localhost:3001/category/
+Content-Type: application/json
+
+{
+    "category_name": "politique"
+}
+
+### GET all category
+GET http://localhost:3001/category
