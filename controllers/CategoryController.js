@@ -32,6 +32,15 @@ class CategoryController {
       return res.status(200).json(result[0]);
     });
   }
+
+  static deleteCategory(req, res) {
+    CategoryModel.deleteCategory(req, (err) => {
+      if (err) {
+        return res.status(404).json({ error: err.message, sql: err.sql });
+      }
+      return res.status(200).json({ message: 'Category deleted' });
+    });
+  }
 }
 
 module.exports = { CategoryController };

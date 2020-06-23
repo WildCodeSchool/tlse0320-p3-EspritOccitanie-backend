@@ -23,6 +23,16 @@ class CategoryModel {
       },
     );
   }
+
+  static deleteCategory(req, callback) {
+    connection.query(
+      'DELETE FROM ro_category WHERE category_id = ?',
+      req.params.id,
+      (err, results) => {
+        callback(err, results);
+      },
+    );
+  }
 }
 
 module.exports = { CategoryModel };

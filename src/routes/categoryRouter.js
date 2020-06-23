@@ -16,5 +16,6 @@ router.use(
 router.post('/', checkCategoryForm, Check.error, CategoryController.postCategory);
 router.get('/', CategoryController.getAllCategory);
 router.get('/:id', CategoryController.getOneCategory);
+router.delete('/:id', CategoryController.deleteCategory);
 
 module.exports = router;
