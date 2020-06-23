@@ -23,6 +23,15 @@ class CategoryController {
       return res.status(200).json(results);
     });
   }
+
+  static getOneCategory(req, res) {
+    CategoryModel.getOneCategory(req, (err, result) => {
+      if (err) {
+        return res.status(404).json({ error: err.message, sql: err.sql });
+      }
+      return res.status(200).json(result[0]);
+    });
+  }
 }
 
 module.exports = { CategoryController };

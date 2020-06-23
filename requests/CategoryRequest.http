@@ -8,3 +8,6 @@ Content-Type: application/json
 
 ### GET all category
 GET http://localhost:3001/category
+
+### GET category by ID
+GET http://localhost:3001/category/3

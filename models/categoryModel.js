@@ -13,6 +13,16 @@ class CategoryModel {
       callback(err, results);
     });
   }
+
+  static getOneCategory(req, callback) {
+    connection.query(
+      'SELECT * FROM ro_category WHERE category_id = ?',
+      req.params.id,
+      (err, results) => {
+        callback(err, results);
+      },
+    );
+  }
 }
 
 module.exports = { CategoryModel };
