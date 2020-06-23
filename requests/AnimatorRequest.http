@@ -11,7 +11,7 @@ Accept: application/json
 Content-Type: application/json
 
     {
-      "animator_firstname": "jerome23",
+      "animator_firstname": "jerome4",
       "animator_lastname": "The_Best",
       "animator_description": "fgsdlkjgsdflkj",
       "animator_image": "fdfff"
