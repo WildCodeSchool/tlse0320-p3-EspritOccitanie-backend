@@ -1,29 +1,21 @@
-// const animatorRouter = require('express').Router({ mergeParams: true });
-// const animatorController = require('../../controllers/animatorController');
+/* eslint-disable indent */
 
-// animatorRouter.post('/', animatorController.postAnimator);
-// animatorRouter.get('/', animatorController.getAllAnimator);
-// animatorRouter.get('/:id', animatorController.getOneAnimator);
-// animatorRouter.delete('/:id', animatorController.delAnimator);
-// animatorRouter.put('/:id', animatorController.putAnimator);
-
-// module.exports = animatorRouter;
-
-
-const { AnimatorController } = require('../../controllers/animatorController');
 const express = require('express');
+const { AnimatorController } = require('../../controllers/animatorController');
+
 const router = express.Router({ mergeParams: true });
+const { checkAnimatorForm } = require('../../controllers/validations/animatorValidation');
 
 
 router.use(express.json());
 router.use(
     express.urlencoded({
         extended: true,
-    })
+    }),
 );
 
 
-router.post('/', AnimatorController.postAnimator);
+router.post('/', checkAnimatorForm, AnimatorController.error, AnimatorController.postAnimator);
 router.get('/', AnimatorController.getAllAnimator);
 router.put('/:id', AnimatorController.putAnimator);
 router.delete('/:id', AnimatorController.delAnimator);

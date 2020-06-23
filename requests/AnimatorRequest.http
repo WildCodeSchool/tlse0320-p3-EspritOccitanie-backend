@@ -11,9 +11,9 @@ Accept: application/json
 Content-Type: application/json
 
     {
-      "animator_firstname": "jerome1",
+      "animator_firstname": "jerome23",
       "animator_lastname": "The_Best",
-      "animator_description": "new Animateur",
+      "animator_description": "fgsdlkjgsdflkj",
       "animator_image": "fdfff"
     }
 
@@ -30,4 +30,4 @@ Content-Type: application/json
 }
 
 ### Del animator by id
-DELETE http://localhost:3001/animator/2
+DELETE http://localhost:3001/animator/4

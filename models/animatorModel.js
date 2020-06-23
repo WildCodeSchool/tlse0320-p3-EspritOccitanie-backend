@@ -1,7 +1,6 @@
 /* eslint-disable indent */
 const connection = require('../db');
 
-
 class AnimatorModel {
     static postAnimator(req, callback) {
         connection.query('INSERT INTO ro_animator SET ?', [req.body], (err, results) => {
@@ -22,20 +21,10 @@ class AnimatorModel {
     }
 
     static delAnimator(req, callback) {
-        const id = parseInt(req.params.id)
-        connection.query('DELETE FROM ro_animator WHERE animator_id = ?', id, (err, results) => {
+        connection.query('DELETE FROM ro_animator WHERE animator_id = ?', req.params.id, (err, results) => {
             callback(err, results);
         });
     }
-
-
-
-
-
-
-
-
-
 
     static getOneAnimator(id, cb) {
         connection.query(
@@ -46,11 +35,6 @@ class AnimatorModel {
             },
         );
     }
-
-
-
-
-
 }
 
 module.exports = { AnimatorModel };
