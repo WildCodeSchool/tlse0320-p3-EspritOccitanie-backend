@@ -10,7 +10,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-      "podcast_title": "Tristan",
+      "podcast_title": "New podcast",
       "podcast_duration": "40min",
       "podcast_description": "new podcast5",
       "podcast_image": null,
@@ -22,42 +22,20 @@ Content-Type: application/json
 }
 
 ### Update a podcast
-PUT  http://localhost:3001/podcast/1
+PUT  http://localhost:3001/podcast/25
 Content-Type: application/json
 
 {
-  "podcast_title": "Podcast2",
-  "podcast_duration": "40min",
-  "podcast_description": "new podcast",
-  "podcast_image": null,
-  "podcast_mp3": "podacast.mp3",
-  "ro_category_category_id": 1
+      "podcast_title": "Update Podcast",
+      "podcast_duration": "40min",
+      "podcast_description": "new podcast5",
+      "podcast_image": null,
+      "podcast_mp3": "podacast6.mp3",
+      "podcast_creation_date": "2013-07-08 09:00:00",
+      "ro_program_program_id": 1,
+      "ro_category_category_id": 1,
+      "ro_animator_animator_id": 3
 }
 
 ###Delete a podcast
 DELETE http://localhost:3001/podcast/5
-
-
-
-
-
-
-
-
-
-### Update a podcast
-PUT http://localhost:3001/podcast/4
-Content-Type: application/json
-
-{
-    "podcast_title": "update podcast",
-    "podcast_duration": "40min",
-    "podcast_description": "bla bla bla",
-    "podcast_image": null,
-    "podcast_mp3": "podacast.mp3",
-    "podcast_creation_date": null,
-    "ro_category_category_id": 1
-}
-
-### Delete a podcast
-DELETE http://localhost:3001/podcast/4
