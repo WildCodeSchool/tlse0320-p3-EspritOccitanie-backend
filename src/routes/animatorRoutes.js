@@ -2,7 +2,7 @@
 const express = require('express');
 
 const router = express.Router();
-const connection = require('../../db');
+// const connection = require('../../db');
 
 router.use(express.json());
 router.use(
@@ -65,11 +65,13 @@ router.use(
 //   if (!animator_firstname || !animator_lastname) {
 //     return res.status(404).json({ error: 'Missing firstname or lastname !' });
 //   }
-//   return connection.query('UPDATE ro_animator SET ? WHERE animator_id = ?', [req.body, id], (err) => {
+//   return connection.query
+// ('UPDATE ro_animator SET ? WHERE animator_id = ?', [req.body, id], (err) => {
 //     if (err) {
 //       return res.status(500).json({ error: 'Animator not update' });
 //     }
-//     return connection.query('SELECT * FROM ro_animator WHERE animator_id = ?', [id], (err2, records) => {
+//     return connection.query
+// ('SELECT * FROM ro_animator WHERE animator_id = ?', [id], (err2, records) => {
 //       if (err2) {
 //         return res.status(500).json({ error: err.message, sql: err.message });
 //       }

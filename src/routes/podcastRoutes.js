@@ -2,7 +2,7 @@
 const express = require('express');
 
 const router = express.Router();
-const connection = require('../../db');
+// const connection = require('../../db');
 
 router.use(express.json());
 router.use(
@@ -26,7 +26,9 @@ router.use(
 
 // GET ALL PODCASTS by date DESC
 /* router.get('/date', (req, res) => {
-  connection.query('SELECT *, DATE_FORMAT(podcast_creation_date, "%d/%m/%Y") FROM ro_podcast order by podcast_creation_date desc limit 4', (err, results) => {
+  connection.query
+  ('SELECT *, DATE_FORMAT(podcast_creation_date, "%d/%m/%Y")
+  FROM ro_podcast order by podcast_creation_date desc limit 4', (err, results) => {
     if (err) {
       return res.status(404).json({ message: 'Bad request !' });
     }
@@ -58,11 +60,13 @@ router.use(
 //   if (!podcast_title || !podcast_description || !podcast_mp3) {
 //     return res.status(404).json({ error: 'Missing field(s) !' });
 //   }
-//   return connection.query('UPDATE ro_podcast SET ? WHERE podcast_id = ?', [req.body, id], (err) => {
+//   return connection.query
+// ('UPDATE ro_podcast SET ? WHERE podcast_id = ?', [req.body, id], (err) => {
 //     if (err) {
 //       return res.status(500).json({ error: 'Podcast not update' });
 //     }
-//     return connection.query('SELECT * FROM ro_podcast WHERE podcast_id = ?', [id], (err2, records) => {
+//     return connection.query
+// ('SELECT * FROM ro_podcast WHERE podcast_id = ?', [id], (err2, records) => {
 //       if (err2) {
 //         return res.status(500).json({ error: 'Bad request !' });
 //       }
