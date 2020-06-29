@@ -10,14 +10,15 @@ Accept: application/json
 Content-Type: application/json
 
 {
-      "podcast_title": "Podcast6",
+      "podcast_title": "Tristan",
       "podcast_duration": "40min",
       "podcast_description": "new podcast5",
       "podcast_image": null,
       "podcast_mp3": "podacast6.mp3",
       "podcast_creation_date": "2013-07-08 09:00:00",
       "ro_program_program_id": 1,
-      "ro_category_category_id": 1
+      "ro_category_category_id": 1,
+      "ro_animator_animator_id": 1
 }
 
 ### Update a podcast
