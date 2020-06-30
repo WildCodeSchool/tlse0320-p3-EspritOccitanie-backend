@@ -63,17 +63,17 @@ CREATE TABLE IF NOT EXISTS `radiodb_eo_test`.`ro_tag` (
   UNIQUE INDEX `tag_name_UNIQUE` (`tag_name` ASC) 
 );
 
-CREATE TABLE IF NOT EXISTS `radiodb_eo_test`.`ro_animator_has_ro_progam` (
+CREATE TABLE IF NOT EXISTS `radiodb_eo_test`.`ro_animator_has_ro_program` (
   `ro_animator_animator_id` INT NOT NULL,
   `ro_program_program_id` INT NOT NULL,
   PRIMARY KEY (
     `ro_animator_animator_id`,
     `ro_program_program_id`
   ),
-  INDEX `fk_ro_animator_has_ro_progam_ro_progam1_idx` (`ro_program_program_id` ASC) ,
-  INDEX `fk_ro_animator_has_ro_progam_ro_animator1_idx` (`ro_animator_animator_id` ASC) ,
-  CONSTRAINT `fk_ro_animator_has_ro_progam_ro_animator1` FOREIGN KEY (`ro_animator_animator_id`) REFERENCES `radiodb_eo_test`.`ro_animator` (`animator_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ro_animator_has_ro_progam_ro_progam1` FOREIGN KEY (`ro_program_program_id`) REFERENCES `radiodb_eo_test`.`ro_program` (`program_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+  INDEX `fk_ro_animator_has_ro_program_ro_program1_idx` (`ro_program_program_id` ASC) ,
+  INDEX `fk_ro_animator_has_ro_program_ro_animator1_idx` (`ro_animator_animator_id` ASC) ,
+  CONSTRAINT `fk_ro_animator_has_ro_program_ro_animator1` FOREIGN KEY (`ro_animator_animator_id`) REFERENCES `radiodb_eo_test`.`ro_animator` (`animator_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ro_animator_has_ro_program_ro_program1` FOREIGN KEY (`ro_program_program_id`) REFERENCES `radiodb_eo_test`.`ro_program` (`program_id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `radiodb_eo_test`.`ro_podcast_has_ro_animator` (
