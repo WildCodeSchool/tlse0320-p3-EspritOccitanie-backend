@@ -92,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `radiodb_eo_test`.`ro_podcast_has_ro_animator` (
 INSERT INTO `radiodb_eo_test`.`ro_category` (`category_id`, `category_name`) VALUES ('1', 'Economie');
 INSERT INTO `radiodb_eo_test`.`ro_category` (`category_id`, `category_name`) VALUES ('2', 'Politique');
 INSERT INTO `radiodb_eo_test`.`ro_category` (`category_id`, `category_name`) VALUES ('3', 'Musique');
+INSERT INTO `radiodb_eo_test`.`ro_category` (`category_id`, `category_name`) VALUES ('4', 'Écologie');
 
 INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('1', 'Jacque', 'LAVERGNE', 'description1', 'image1');
 INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('2', 'Jerome', 'THEBEST', 'description2', 'image2');
