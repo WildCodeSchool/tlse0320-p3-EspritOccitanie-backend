@@ -10,7 +10,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-      "podcast_title": "New podcast",
+      "podcast_title": "testtest",
       "podcast_duration": "40min",
       "podcast_description": "new podcast5",
       "podcast_image": null,
@@ -18,7 +18,7 @@ Content-Type: application/json
       "podcast_creation_date": "2013-07-08 09:00:00",
       "ro_program_program_id": 1,
       "ro_category_category_id": 1,
-      "ro_animator_animator_id": 1
+      "ro_animator_animator_id": [2, 3, 4]
 }
 
 ### Update a podcast
@@ -38,4 +38,5 @@ Content-Type: application/json
 }
 
 ###Delete a podcast
-DELETE http://localhost:3001/podcast/5
+DELETE http://localhost:3001/podcast/4
+

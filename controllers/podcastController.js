@@ -81,7 +81,6 @@ class PodcastController {
         }
         return res.status(200).json(result1);
       });
-    //   return res.status(200).json(results[0]);
     });
   }
 }
