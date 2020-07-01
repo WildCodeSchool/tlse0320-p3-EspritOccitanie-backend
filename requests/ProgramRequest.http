@@ -31,3 +31,9 @@ Content-Type: application/json
 
 ###Delete a program
 DELETE http://localhost:3001/program/4
+
+### get all program from animator
+GET http://localhost:3001/program?animator=1
+
+### get all program from categorie
+GET http://localhost:3001/program?categorie=2

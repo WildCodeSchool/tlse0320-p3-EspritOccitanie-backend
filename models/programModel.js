@@ -57,6 +57,18 @@ class ProgramModel {
     });
   }
 
+  static getAllProgramsFromAnimator(req, animator, callback) {
+    connection.query('SELECT ro_program_program_id FROM ro_animator_has_ro_program WHERE ro_animator_animator_id = ?', [animator], (err, results) => {
+      callback(err, results);
+    });
+  }
+
+  static getAllProgramsFromCategory(req, categorie, callback) {
+    connection.query('SELECT * FROM ro_program WHERE ro_category_category_id = ?', [categorie], (err, results) => {
+      callback(err, results);
+    });
+  }
+
   static putProgram(req, callback) {
     const {
         program_title,

@@ -33,12 +33,29 @@ class ProgramController {
   }
 
   static getAllPrograms(req, res) {
-    ProgramModel.getAllPrograms(req, (err, results) => {
-      if (err) {
-        return res.status(500).json({ error: `${err}` });
-      }
-      return res.status(200).json(results);
-    });
+    const { animator, categorie } = req.query;
+    if (animator) {
+      ProgramModel.getAllProgramsFromAnimator(req, animator, (err, results) => {
+        if (err) {
+          return res.status(500).json({ error: `${err}` });
+        }
+        return res.status(200).json(results);
+      });
+    } else if (categorie) {
+      ProgramModel.getAllProgramsFromCategory(req, categorie, (err, results) => {
+        if (err) {
+          return res.status(500).json({ error: `${err}` });
+        }
+        return res.status(200).json(results);
+      });
+    } else {
+      ProgramModel.getAllPrograms(req, (err, results) => {
+        if (err) {
+          return res.status(500).json({ error: `${err}` });
+        }
+        return res.status(200).json(results);
+      });
+    }
   }
 
   static getOneProgram(req, res) {
