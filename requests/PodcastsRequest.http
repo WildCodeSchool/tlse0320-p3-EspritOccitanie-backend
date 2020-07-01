@@ -46,3 +46,6 @@ GET http://localhost:3001/podcast?program=2
 ### get all podcasts from animator
 GET http://localhost:3001/podcast?animator=2
 
+### get all podcasts from animator
+GET http://localhost:3001/podcast?categorie=1
+

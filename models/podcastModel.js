@@ -129,6 +129,14 @@ class PodcastModel {
       callback(err, results);
     });
   }
+
+  static getPodcastWithCategorie(req, categorie, callback) {
+    connection
+    .query('SELECT * FROM ro_podcast WHERE ro_category_category_id = ?',
+    [categorie], (err, results) => {
+      callback(err, results);
+    });
+  }
 }
 
 module.exports = { PodcastModel };
