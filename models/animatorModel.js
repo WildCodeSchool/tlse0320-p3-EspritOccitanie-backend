@@ -26,12 +26,12 @@ class AnimatorModel {
         });
     }
 
-    static getOneAnimator(id, cb) {
+    static getOneAnimator(req, callback) {
         connection.query(
-            'SELECT * FROM ro_animator WHERE id = ?',
-            id,
-            (err, results, fields) => {
-                cb(err, results, fields);
+            'SELECT * FROM ro_animator WHERE animator_id = ?',
+            req.params.id,
+            (err, results) => {
+                callback(err, results);
             },
         );
     }
