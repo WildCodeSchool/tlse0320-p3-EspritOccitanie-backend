@@ -1,0 +1,33 @@
+### Get all program
+GET http://localhost:3001/program
+
+### Get program by id
+GET http://localhost:3001/program/2
+
+### Post a program (json)
+POST http://localhost:3001/program
+Accept: application/json
+Content-Type: application/json
+
+{
+      "program_title": "te7",
+      "program_description": "",
+      "program_image": null,
+      "ro_category_category_id": 1,
+      "ro_animator_animator_id": [1, 2]
+}
+
+### Update a program
+PUT  http://localhost:3001/program/1
+Content-Type: application/json
+
+{
+      "program_title": "test2",
+      "program_description": "",
+      "program_image": null,
+      "ro_category_category_id": 1,
+      "ro_animator_animator_id": 2
+}
+
+###Delete a program
+DELETE http://localhost:3001/program/4

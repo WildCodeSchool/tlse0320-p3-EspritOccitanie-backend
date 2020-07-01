@@ -115,8 +115,8 @@ class PodcastModel {
     );
   }
 
-  static getOnePodcast(id, cb) {
-    connection.query('SELECT * FROM ro_podcast WHERE id = ?', id, (err, results, fields) => {
+  static getOnePodcast(req, cb) {
+    connection.query('SELECT * FROM ro_podcast WHERE podcast_id = ?', req.params.id, (err, results, fields) => {
       cb(err, results, fields);
     });
   }

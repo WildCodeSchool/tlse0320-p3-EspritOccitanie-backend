@@ -10,7 +10,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-      "podcast_title": "testtest",
+      "podcast_title": "test2",
       "podcast_duration": "40min",
       "podcast_description": "new podcast5",
       "podcast_image": null,
@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ### Update a podcast
-PUT  http://localhost:3001/podcast/25
+PUT  http://localhost:3001/podcast/2
 Content-Type: application/json
 
 {
