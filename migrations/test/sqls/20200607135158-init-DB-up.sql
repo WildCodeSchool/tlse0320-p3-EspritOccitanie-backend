@@ -94,12 +94,19 @@ INSERT INTO `radiodb_eo_test`.`ro_category` (`category_id`, `category_name`) VAL
 INSERT INTO `radiodb_eo_test`.`ro_category` (`category_id`, `category_name`) VALUES ('3', 'Musique');
 INSERT INTO `radiodb_eo_test`.`ro_category` (`category_id`, `category_name`) VALUES ('4', 'Écologie');
 
-INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('1', 'Jacque', 'LAVERGNE', 'description1', 'image1');
-INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('2', 'Jerome', 'THEBEST', 'description2', 'image2');
-INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('3', 'Thomas', 'LAFFREUX', 'description3', 'image3');
-INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('4', 'Tristan', 'LEBILANGUE', 'description4', 'image4');
+INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('1', 'Thierry', 'AGUILO', 'description1', 'image1');
+INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('2', 'Claire', 'BREEDS', 'description2', 'image2');
+INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('3', 'Geoffrey', 'CARRERE', 'description3', 'image3');
+INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('4', 'Jean-Pierre', 'ETRAMPES', 'description4', 'image4');
+INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('5', 'Irène', 'FINKEL', 'description5', 'image5');
+INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('6', 'Eric', 'HEBEL', 'description6', 'image6');
+INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('7', 'Jacques', 'LAVERGNE', 'description7', 'image7');
+INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('8', 'Marie', 'LE BERRE', 'description8', 'image8');
+INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('9', 'Benjamin', 'LECOUSIN', 'description9', 'image9');
+INSERT INTO `radiodb_eo_test`.`ro_animator` (`animator_id`, `animator_firstname`, `animator_lastname`, `animator_description`, `animator_image`) VALUES ('10', 'Monique', 'MARQUE', 'description10', 'image10');
 
-INSERT INTO `radiodb_eo_test`.`ro_program` (`program_id`, `program_title`, `program_description`, `program_image`, `ro_category_category_id`) VALUES ('1', 'Titre1', 'description1', 'image1', '1');
-INSERT INTO `radiodb_eo_test`.`ro_program` (`program_id`, `program_title`, `program_description`, `program_image`, `ro_category_category_id`) VALUES ('2', 'Titre2', 'description1', 'image2', '2');
-INSERT INTO `radiodb_eo_test`.`ro_program` (`program_id`, `program_title`, `program_description`, `program_image`, `ro_category_category_id`) VALUES ('3', 'Titre3', 'description1', 'image3', '3');
-INSERT INTO `radiodb_eo_test`.`ro_program` (`program_id`, `program_title`, `program_description`, `program_image`, `ro_category_category_id`) VALUES ('4', 'Titre4', 'description1', 'image4', '4');
+
+INSERT INTO `radiodb_eo_test`.`ro_program` (`program_id`, `program_title`, `program_description`, `program_image`, `ro_category_category_id`) VALUES ('1', 'CAP E CAP', 'description1', 'image1', '1');
+INSERT INTO `radiodb_eo_test`.`ro_program` (`program_id`, `program_title`, `program_description`, `program_image`, `ro_category_category_id`) VALUES ('2', 'PROGRESSIF', 'description2', 'image2', '2');
+INSERT INTO `radiodb_eo_test`.`ro_program` (`program_id`, `program_title`, `program_description`, `program_image`, `ro_category_category_id`) VALUES ('3', 'MON BEAU QUARTIER', 'description3', 'image3', '3');
+INSERT INTO `radiodb_eo_test`.`ro_program` (`program_id`, `program_title`, `program_description`, `program_image`, `ro_category_category_id`) VALUES ('4', 'PATCHWORK', 'description4', 'image4', '4');

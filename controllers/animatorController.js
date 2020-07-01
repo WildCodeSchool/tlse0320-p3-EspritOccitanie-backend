@@ -16,6 +16,18 @@ class AnimatorController {
         });
     }
 
+    static getOneAnimator(req, res) {
+        AnimatorModel.getOneAnimator(req, (err, results) => {
+            if (err) {
+                return res.status(404).json({ error: err.message, sql: err.sql });
+            }
+
+            return res
+                .status(200)
+                .json(results[0]);
+        });
+    }
+
     static getAllAnimator(req, res) {
         AnimatorModel.getAllAnimator(req, (err, results) => {
             if (err) {
