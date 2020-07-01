@@ -10,7 +10,6 @@ class ProgramModel {
       program_description,
       program_image,
       ro_category_category_id,
-      ro_animator_animator_id,
     } = req.body;
     const dataProgram = {
       program_title,

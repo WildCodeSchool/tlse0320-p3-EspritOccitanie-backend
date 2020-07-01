@@ -84,7 +84,6 @@ class PodcastModel {
         podcast_creation_date,
         ro_category_category_id,
         ro_program_program_id,
-        ro_animator_animator_id,
       } = req.body;
       const dataPodcast = {
         podcast_title,
@@ -118,6 +117,12 @@ class PodcastModel {
   static getOnePodcast(req, cb) {
     connection.query('SELECT * FROM ro_podcast WHERE podcast_id = ?', req.params.id, (err, results, fields) => {
       cb(err, results, fields);
+    });
+  }
+
+  static getPodcastFromProgram(req, program, callback) {
+    connection.query('SELECT * FROM ro_podcast WHERE ro_program_program_id = ?', [program], (err, results) => {
+      callback(err, results);
     });
   }
 }

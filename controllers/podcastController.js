@@ -33,12 +33,22 @@ class PodcastController {
   }
 
   static getAllPodcasts(req, res) {
-    PodcastModel.getAllPodcasts(req, (err, results) => {
-      if (err) {
-        return res.status(500).json({ error: `${err}` });
-      }
-      return res.status(200).json(results);
-    });
+    const { program } = req.query;
+    if (program) {
+      PodcastModel.getPodcastFromProgram(req, program, (err, result) => {
+        if (err) {
+          return res.status(500).json({ error: err.message, sql: err.sql });
+        }
+        return res.status(200).json({ result });
+      });
+    } else {
+      PodcastModel.getAllPodcasts(req, (err, results) => {
+        if (err) {
+          return res.status(500).json({ error: `${err}` });
+        }
+        return res.status(200).json(results);
+      });
+    }
   }
 
   static getOnePodcast(req, res) {
@@ -83,6 +93,19 @@ class PodcastController {
       });
     });
   }
+
+  // static getPodcastFromProgram(req, res) {
+  //   console.log('JE SUIS getPodcastFromProgram');
+  //   PodcastModel.getPodcastFromProgram(req, (err, result) => {
+  //     console.log('result1', result);
+  //     if (err) {
+  //       return res.status(500).json({ error: err.message, sql: err.sql });
+  //     }
+  //     console.log('result', result);
+  //     return res.status(200).json({ result });
+  //   });
+  // }
+
 }
 
 module.exports = { PodcastController };
