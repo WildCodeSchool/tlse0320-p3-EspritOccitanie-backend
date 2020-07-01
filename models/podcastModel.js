@@ -123,6 +123,12 @@ class PodcastModel {
       callback(err, results);
     });
   }
+
+  static getPodcastFromAnimator(req, animator, callback) {
+    connection.query('SELECT ro_podcast_podcast_id FROM ro_podcast_has_ro_animator WHERE ro_animator_animator_id = ?', [animator], (err, results) => {
+      callback(err, results);
+    });
+  }
 }
 
 module.exports = { PodcastModel };

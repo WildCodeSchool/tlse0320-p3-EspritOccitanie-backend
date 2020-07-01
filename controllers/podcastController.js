@@ -33,9 +33,16 @@ class PodcastController {
   }
 
   static getAllPodcasts(req, res) {
-    const { program } = req.query;
+    const { program, animator } = req.query;
     if (program) {
       PodcastModel.getPodcastFromProgram(req, program, (err, result) => {
+        if (err) {
+          return res.status(500).json({ error: err.message, sql: err.sql });
+        }
+        return res.status(200).json({ result });
+      });
+    } else if (animator) {
+      PodcastModel.getPodcastFromAnimator(req, animator, (err, result) => {
         if (err) {
           return res.status(500).json({ error: err.message, sql: err.sql });
         }
