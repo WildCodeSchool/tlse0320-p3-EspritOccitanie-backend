@@ -93,19 +93,6 @@ class PodcastController {
       });
     });
   }
-
-  // static getPodcastFromProgram(req, res) {
-  //   console.log('JE SUIS getPodcastFromProgram');
-  //   PodcastModel.getPodcastFromProgram(req, (err, result) => {
-  //     console.log('result1', result);
-  //     if (err) {
-  //       return res.status(500).json({ error: err.message, sql: err.sql });
-  //     }
-  //     console.log('result', result);
-  //     return res.status(200).json({ result });
-  //   });
-  // }
-
 }
 
 module.exports = { PodcastController };

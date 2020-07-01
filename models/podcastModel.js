@@ -40,7 +40,6 @@ class PodcastModel {
       podcast_creation_date,
       ro_category_category_id,
       ro_program_program_id,
-      ro_animator_animator_id,
     } = req.body;
     const dataPodcast = {
       podcast_title,
@@ -52,7 +51,6 @@ class PodcastModel {
       ro_category_category_id,
       ro_program_program_id,
     };
-    console.log(ro_animator_animator_id);
     connection.query('INSERT INTO ro_podcast SET ?', [dataPodcast], (err, results) => {
       callback(err, results);
     });
