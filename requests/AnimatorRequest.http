@@ -30,3 +30,6 @@ Content-Type: application/json
 
 ### Del animator by id
 DELETE http://localhost:3001/animator/4
+
+### get animator from program
+GET http://localhost:3001/animator?program=21
