@@ -14,6 +14,12 @@ class AnimatorModel {
         });
     }
 
+    static getAllAnimatorFromProgram(req, program, callback) {
+        connection.query('SELECT ro_animator_animator_id FROM ro_animator_has_ro_program WHERE ro_program_program_id = ?', [program], (err, results) => {
+          callback(err, results);
+        });
+      }
+
     static putAnimator(req, callback) {
         connection.query('UPDATE ro_animator SET ? WHERE animator_id = ?', [req.body, req.params.id], (err, results) => {
             callback(err, results);

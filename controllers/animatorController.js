@@ -29,14 +29,24 @@ class AnimatorController {
     }
 
     static getAllAnimator(req, res) {
-        AnimatorModel.getAllAnimator(req, (err, results) => {
-            if (err) {
-                return res.status(500).json({ error: `${err}` });
-            }
-            return res
-                .status(200)
-                .json(results);
-        });
+        const { program } = req.query;
+        if (program) {
+            AnimatorModel.getAllAnimatorFromProgram(req, program, (err, results) => {
+                if (err) {
+                  return res.status(500).json({ error: `${err}` });
+                }
+                return res.status(200).json(results);
+              });
+        } else {
+            AnimatorModel.getAllAnimator(req, (err, results) => {
+                if (err) {
+                    return res.status(500).json({ error: `${err}` });
+                }
+                return res
+                    .status(200)
+                    .json(results);
+            });
+        }
     }
 
     static delAnimator(req, res) {
