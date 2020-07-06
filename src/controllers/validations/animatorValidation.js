@@ -31,5 +31,4 @@ const checkAnimatorForm = [
         .escape(),
 ];
 
-
 module.exports = { checkAnimatorForm };
