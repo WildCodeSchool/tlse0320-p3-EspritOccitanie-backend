@@ -1,15 +1,15 @@
 /* eslint-disable indent */
 /* eslint-disable camelcase */
 
-const connection = require('../db');
+const connection = require('../../db');
 
 class PodcastModel {
   static addAnimator(req, ro_podcast_podcast_id, callback) {
     const { ro_animator_animator_id } = req.body;
     const multiAnimator = [];
     ro_animator_animator_id.map((animatorId) => multiAnimator
-    .push([ro_podcast_podcast_id, animatorId]));
-      connection.query('INSERT INTO ro_podcast_has_ro_animator(ro_podcast_podcast_id, ro_animator_animator_id) VALUES ?',
+      .push([ro_podcast_podcast_id, animatorId]));
+    connection.query('INSERT INTO ro_podcast_has_ro_animator(ro_podcast_podcast_id, ro_animator_animator_id) VALUES ?',
       [multiAnimator], (err1, result1) => {
         callback(err1, result1);
       });
@@ -18,9 +18,9 @@ class PodcastModel {
   static putAnimator(req, ro_podcast_podcast_id, callback) {
     const { ro_animator_animator_id } = req.body;
     const podcastAnimator = {
-        ro_animator_animator_id,
-        ro_podcast_podcast_id,
-      };
+      ro_animator_animator_id,
+      ro_podcast_podcast_id,
+    };
     connection.query(
       'INSERT INTO ro_podcast_has_ro_animator SET ?',
       [podcastAnimator],
@@ -72,27 +72,27 @@ class PodcastModel {
   }
 
   static putPodcast(req, callback) {
-      const podcast_id = req.params.id;
+    const podcast_id = req.params.id;
     const {
-        podcast_title,
-        podcast_duration,
-        podcast_description,
-        podcast_image,
-        podcast_mp3,
-        podcast_creation_date,
-        ro_category_category_id,
-        ro_program_program_id,
-      } = req.body;
-      const dataPodcast = {
-        podcast_title,
-        podcast_duration,
-        podcast_description,
-        podcast_image,
-        podcast_mp3,
-        podcast_creation_date,
-        ro_category_category_id,
-        ro_program_program_id,
-      };
+      podcast_title,
+      podcast_duration,
+      podcast_description,
+      podcast_image,
+      podcast_mp3,
+      podcast_creation_date,
+      ro_category_category_id,
+      ro_program_program_id,
+    } = req.body;
+    const dataPodcast = {
+      podcast_title,
+      podcast_duration,
+      podcast_description,
+      podcast_image,
+      podcast_mp3,
+      podcast_creation_date,
+      ro_category_category_id,
+      ro_program_program_id,
+    };
     connection.query(
       'UPDATE ro_podcast SET ? WHERE podcast_id = ?',
       [dataPodcast, podcast_id],
@@ -132,10 +132,10 @@ class PodcastModel {
 
   static getPodcastWithCategorie(req, categorie, callback) {
     connection
-    .query('SELECT * FROM ro_podcast WHERE ro_category_category_id = ?',
-    [categorie], (err, results) => {
-      callback(err, results);
-    });
+      .query('SELECT * FROM ro_podcast WHERE ro_category_category_id = ?',
+        [categorie], (err, results) => {
+          callback(err, results);
+        });
   }
 }
 

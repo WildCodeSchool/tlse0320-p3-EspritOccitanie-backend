@@ -3,7 +3,7 @@
 const express = require('express');
 
 const router = express.Router({ mergeParams: true });
-const { ProgramController } = require('../../controllers/programController');
+const { ProgramController } = require('../controllers/programController');
 
 router.use(express.json());
 router.use(

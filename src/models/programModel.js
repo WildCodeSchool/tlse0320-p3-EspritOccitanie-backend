@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 /* eslint-disable camelcase */
 
-const connection = require('../db');
+const connection = require('../../db');
 
 class ProgramModel {
   static postProgram(req, callback) {
@@ -26,7 +26,7 @@ class ProgramModel {
     const { ro_animator_animator_id } = req.body;
     const multiAnimator = [];
     ro_animator_animator_id.map((animatorId) => multiAnimator
-    .push([ro_program_program_id, animatorId]));
+      .push([ro_program_program_id, animatorId]));
     connection.query(
       'INSERT INTO ro_animator_has_ro_program (ro_program_program_id, ro_animator_animator_id) VALUES ?',
       [multiAnimator],
@@ -39,7 +39,7 @@ class ProgramModel {
   static putAnimator(req, ro_program_program_id, callback) {
     const { ro_animator_animator_id } = req.body;
     const programAnimator = {
-        ro_program_program_id,
+      ro_program_program_id,
       ro_animator_animator_id,
     };
     connection.query(
@@ -71,17 +71,17 @@ class ProgramModel {
 
   static putProgram(req, callback) {
     const {
-        program_title,
-        program_description,
-        program_image,
-        ro_category_category_id,
-      } = req.body;
-      const dataProgram = {
-        program_title,
-        program_description,
-        program_image,
-        ro_category_category_id,
-      };
+      program_title,
+      program_description,
+      program_image,
+      ro_category_category_id,
+    } = req.body;
+    const dataProgram = {
+      program_title,
+      program_description,
+      program_image,
+      ro_category_category_id,
+    };
     connection.query(
       'UPDATE ro_program SET ? WHERE program_id = ?',
       [dataProgram, req.params.id],

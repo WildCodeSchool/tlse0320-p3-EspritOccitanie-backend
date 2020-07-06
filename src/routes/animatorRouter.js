@@ -3,10 +3,10 @@
 const express = require('express');
 
 const router = express.Router({ mergeParams: true });
-const { AnimatorController } = require('../../controllers/animatorController');
+const { AnimatorController } = require('../controllers/animatorController');
 
-const { checkAnimatorForm } = require('../../controllers/validations/animatorValidation');
-const { Check } = require('../../controllers/checkErrors');
+const { checkAnimatorForm } = require('../controllers/validations/animatorValidation');
+const { Check } = require('../controllers/checkErrors');
 
 router.use(express.json());
 router.use(
