@@ -1,10 +1,10 @@
 const express = require('express');
 
 const router = express.Router({ mergeParams: true });
-const { CategoryController } = require('../../controllers/CategoryController');
+const { CategoryController } = require('../controllers/CategoryController');
 
-const { checkCategoryForm } = require('../../controllers/validations/categoryValidation');
-const { Check } = require('../../controllers/checkErrors');
+const { checkCategoryForm } = require('../controllers/validations/categoryValidation');
+const { Check } = require('../controllers/checkErrors');
 
 router.use(express.json());
 router.use(

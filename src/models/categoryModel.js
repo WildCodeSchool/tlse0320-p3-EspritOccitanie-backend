@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-const connection = require('../db');
+const connection = require('../../db');
 
 class CategoryModel {
   static postCategory(req, callback) {
