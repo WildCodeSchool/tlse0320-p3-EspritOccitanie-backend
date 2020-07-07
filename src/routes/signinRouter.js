@@ -1,7 +1,11 @@
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
+/* eslint-disable no-unused-vars */
 const express = require('express');
 const bcrypt = require('bcrypt');
-const connection = require('../../db');
 const util = require('util');
+const connection = require('../../db');
+
 const queryAsync = util.promisify(connection.query).bind(connection);
 
 const router = express.Router({ mergeParams: true });
