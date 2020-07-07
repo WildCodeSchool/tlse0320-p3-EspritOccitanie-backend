@@ -4,7 +4,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-      "admin_user": "titi",
-      "admin_email": "titi@toto.to",
-      "admin_password": "toto"
+      "admin_user": "tutu",
+      "admin_email": "tutu@tutu.tu",
+      "admin_password": "tutu"
 }
