@@ -17,7 +17,7 @@ router.post('', async (req, res) => {
     const test = bcrypt.compareSync(result[0].admin_password, hash); // true
     if (test) {
       console.log('redirection');
-      res.location('/admin-radio-occitanie');
+      res.status(200).json({ message: 'OK' });
     } else {
       res.status(500).send({ message: 'Mot de passe invalide' });
     }
