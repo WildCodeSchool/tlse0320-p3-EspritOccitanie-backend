@@ -91,6 +91,11 @@ class ProgramController {
         return res.status(500).json({ error: `${err}` });
       }
       req.program_id = req.params.id;
+
+      if (req.body.ro_animator_animator_id.length === 0) {
+        return res.status(200).json('ok');
+      }
+
       const ro_program_program_id = req.program_id;
       return ProgramModel.deleteAnimatorProgram(req, ro_program_program_id, (err2) => {
         if (err2) {
