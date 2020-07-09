@@ -92,7 +92,7 @@ class ProgramController {
       }
       req.program_id = req.params.id;
       const ro_program_program_id = req.program_id;
-      return ProgramModel.deleteAnimatorProgram(req, ro_program_program_id, (err2, result2) => {
+      return ProgramModel.deleteAnimatorProgram(req, ro_program_program_id, (err2) => {
         if (err2) {
           return res.status(500).json({ error: `${err2}` });
         }

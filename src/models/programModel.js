@@ -31,7 +31,6 @@ class ProgramModel {
       'INSERT INTO ro_animator_has_ro_program (ro_program_program_id, ro_animator_animator_id) VALUES ?',
       [multiAnimator],
       (err1, result1) => {
-        console.log(err1)
         callback(err1, result1);
       },
     );
@@ -65,7 +64,6 @@ class ProgramModel {
       'DELETE FROM ro_animator_has_ro_program WHERE ro_program_program_id = ?',
       ro_program_program_id,
       (err2, results2) => {
-        console.log(err2)
         callback(err2, results2);
       },
     );
