@@ -31,42 +31,10 @@ class ProgramModel {
       'INSERT INTO ro_animator_has_ro_program (ro_program_program_id, ro_animator_animator_id) VALUES ?',
       [multiAnimator],
       (err1, result1) => {
+        console.log(err1)
         callback(err1, result1);
       },
     );
-  }
-
-  static putAnimator(req, ro_program_program_id, callback) {
-    const { ro_animator_animator_id } = req.body;
-    const programAnimator = {
-      ro_program_program_id,
-      ro_animator_animator_id,
-    };
-    connection.query(
-      'INSERT INTO ro_animator_has_ro_program SET ?',
-      [programAnimator],
-      (err1, result1) => {
-        callback(err1, result1);
-      },
-    );
-  }
-
-  static getAllPrograms(req, callback) {
-    connection.query('SELECT * FROM ro_program', (err, results) => {
-      callback(err, results);
-    });
-  }
-
-  static getAllProgramsFromAnimator(req, animator, callback) {
-    connection.query('SELECT ro_program_program_id FROM ro_animator_has_ro_program WHERE ro_animator_animator_id = ?', [animator], (err, results) => {
-      callback(err, results);
-    });
-  }
-
-  static getAllProgramsFromCategory(req, categorie, callback) {
-    connection.query('SELECT * FROM ro_program WHERE ro_category_category_id = ?', [categorie], (err, results) => {
-      callback(err, results);
-    });
   }
 
   static putProgram(req, callback) {
@@ -86,9 +54,54 @@ class ProgramModel {
       'UPDATE ro_program SET ? WHERE program_id = ?',
       [dataProgram, req.params.id],
       (err, results) => {
+        console.log(err);
         callback(err, results);
       },
     );
+  }
+
+  static deleteAnimatorProgram(req, ro_program_program_id, callback) {
+    connection.query(
+      'DELETE FROM ro_animator_has_ro_program WHERE ro_program_program_id = ?',
+      ro_program_program_id,
+      (err2, results2) => {
+        console.log(err2)
+        callback(err2, results2);
+      },
+    );
+  }
+
+  // static putAnimator(req, ro_program_program_id, callback) {
+  //   const { ro_animator_animator_id } = req.body;
+  //   const multiAnimator = [];
+  //   ro_animator_animator_id.map((animatorId) => multiAnimator
+  //     .push([animatorId]));
+  //   connection.query(
+  //     'UPDATE ro_animator_has_ro_program SET ? WHERE ro_program_program_id = ?',
+  //     [multiAnimator, ro_program_program_id],
+  //     (err1, result1) => {
+  //       console.log(err1)
+  //       callback(err1, result1);
+  //     },
+  //   );
+  // }
+
+  static getAllPrograms(req, callback) {
+    connection.query('SELECT * FROM ro_program', (err, results) => {
+      callback(err, results);
+    });
+  }
+
+  static getAllProgramsFromAnimator(req, animator, callback) {
+    connection.query('SELECT ro_program_program_id FROM ro_animator_has_ro_program WHERE ro_animator_animator_id = ?', [animator], (err, results) => {
+      callback(err, results);
+    });
+  }
+
+  static getAllProgramsFromCategory(req, categorie, callback) {
+    connection.query('SELECT * FROM ro_program WHERE ro_category_category_id = ?', [categorie], (err, results) => {
+      callback(err, results);
+    });
   }
 
   static delProgram(req, callback) {
