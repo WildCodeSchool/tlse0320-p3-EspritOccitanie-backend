@@ -15,20 +15,31 @@ class PodcastModel {
       });
   }
 
-  static putAnimator(req, ro_podcast_podcast_id, callback) {
-    const { ro_animator_animator_id } = req.body;
-    const podcastAnimator = {
-      ro_animator_animator_id,
-      ro_podcast_podcast_id,
-    };
+  static deleteAnimatorPodcast(req, ro_podcast_podcast_id, callback) {
     connection.query(
-      'INSERT INTO ro_podcast_has_ro_animator SET ?',
-      [podcastAnimator],
-      (err1, result1) => {
-        callback(err1, result1);
+      'DELETE FROM ro_podcast_has_ro_animator WHERE ro_podcast_podcast_id = ?',
+      ro_podcast_podcast_id,
+      (err2, results2) => {
+        console.log(err2);
+        callback(err2, results2);
       },
     );
   }
+
+  // static putAnimator(req, ro_podcast_podcast_id, callback) {
+  //   const { ro_animator_animator_id } = req.body;
+  //   const podcastAnimator = {
+  //     ro_animator_animator_id,
+  //     ro_podcast_podcast_id,
+  //   };
+  //   connection.query(
+  //     'INSERT INTO ro_podcast_has_ro_animator SET ?',
+  //     [podcastAnimator],
+  //     (err1, result1) => {
+  //       callback(err1, result1);
+  //     },
+  //   );
+  // }
 
   static postPodcast(req, callback) {
     const {
