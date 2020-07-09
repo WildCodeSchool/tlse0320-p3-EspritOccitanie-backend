@@ -69,21 +69,6 @@ class ProgramModel {
     );
   }
 
-  // static putAnimator(req, ro_program_program_id, callback) {
-  //   const { ro_animator_animator_id } = req.body;
-  //   const multiAnimator = [];
-  //   ro_animator_animator_id.map((animatorId) => multiAnimator
-  //     .push([animatorId]));
-  //   connection.query(
-  //     'UPDATE ro_animator_has_ro_program SET ? WHERE ro_program_program_id = ?',
-  //     [multiAnimator, ro_program_program_id],
-  //     (err1, result1) => {
-  //       console.log(err1)
-  //       callback(err1, result1);
-  //     },
-  //   );
-  // }
-
   static getAllPrograms(req, callback) {
     connection.query('SELECT * FROM ro_program', (err, results) => {
       callback(err, results);
