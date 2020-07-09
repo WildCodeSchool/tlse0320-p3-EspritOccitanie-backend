@@ -92,11 +92,16 @@ class ProgramController {
       }
       req.program_id = req.params.id;
       const ro_program_program_id = req.program_id;
-      return ProgramModel.putAnimator(req, ro_program_program_id, (err1, result1) => {
-        if (err1) {
-          return res.status(500).json({ error: `${err1}`, data: 'refq' });
+      return ProgramModel.deleteAnimatorProgram(req, ro_program_program_id, (err2) => {
+        if (err2) {
+          return res.status(500).json({ error: `${err2}` });
         }
-        return res.status(200).json(result1);
+        return ProgramModel.addAnimator(req, ro_program_program_id, (err1, result1) => {
+          if (err1) {
+            return res.status(500).json({ error: `${err1}`, data: 'refq' });
+          }
+          return res.status(200).json(result1);
+        });
       });
     });
   }

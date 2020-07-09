@@ -18,15 +18,15 @@ Content-Type: application/json
 }
 
 ### Update a program
-PUT  http://localhost:3001/program/1
+PUT  http://localhost:3001/program/11
 Content-Type: application/json
 
 {
-      "program_title": "test2",
-      "program_description": "",
+      "program_title": "Update",
+      "program_description": "ddddddd",
       "program_image": null,
       "ro_category_category_id": 1,
-      "ro_animator_animator_id": 2
+      "ro_animator_animator_id": [3, 4]
 }
 
 ###Delete a program

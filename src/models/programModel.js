@@ -36,17 +36,35 @@ class ProgramModel {
     );
   }
 
-  static putAnimator(req, ro_program_program_id, callback) {
-    const { ro_animator_animator_id } = req.body;
-    const programAnimator = {
-      ro_program_program_id,
-      ro_animator_animator_id,
+  static putProgram(req, callback) {
+    const {
+      program_title,
+      program_description,
+      program_image,
+      ro_category_category_id,
+    } = req.body;
+    const dataProgram = {
+      program_title,
+      program_description,
+      program_image,
+      ro_category_category_id,
     };
     connection.query(
-      'INSERT INTO ro_animator_has_ro_program SET ?',
-      [programAnimator],
-      (err1, result1) => {
-        callback(err1, result1);
+      'UPDATE ro_program SET ? WHERE program_id = ?',
+      [dataProgram, req.params.id],
+      (err, results) => {
+        console.log(err);
+        callback(err, results);
+      },
+    );
+  }
+
+  static deleteAnimatorProgram(req, ro_program_program_id, callback) {
+    connection.query(
+      'DELETE FROM ro_animator_has_ro_program WHERE ro_program_program_id = ?',
+      ro_program_program_id,
+      (err2, results2) => {
+        callback(err2, results2);
       },
     );
   }
@@ -67,28 +85,6 @@ class ProgramModel {
     connection.query('SELECT * FROM ro_program WHERE ro_category_category_id = ?', [categorie], (err, results) => {
       callback(err, results);
     });
-  }
-
-  static putProgram(req, callback) {
-    const {
-      program_title,
-      program_description,
-      program_image,
-      ro_category_category_id,
-    } = req.body;
-    const dataProgram = {
-      program_title,
-      program_description,
-      program_image,
-      ro_category_category_id,
-    };
-    connection.query(
-      'UPDATE ro_program SET ? WHERE program_id = ?',
-      [dataProgram, req.params.id],
-      (err, results) => {
-        callback(err, results);
-      },
-    );
   }
 
   static delProgram(req, callback) {

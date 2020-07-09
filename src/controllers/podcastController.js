@@ -99,11 +99,16 @@ class PodcastController {
       }
       req.podcast_id = req.params.id;
       const ro_podcast_podcast_id = req.podcast_id;
-      return PodcastModel.putAnimator(req, ro_podcast_podcast_id, (err1, result1) => {
-        if (err1) {
-          return res.status(500).json({ error: `${err1}`, data: 'refq' });
+      return PodcastModel.deleteAnimatorPodcast(req, ro_podcast_podcast_id, (err2) => {
+        if (err2) {
+          return res.status(500).json({ error: `${err2}` });
         }
-        return res.status(200).json(result1);
+        return PodcastModel.addAnimator(req, ro_podcast_podcast_id, (err1, result1) => {
+          if (err1) {
+            return res.status(500).json({ error: `${err1}` });
+          }
+          return res.status(200).json(result1);
+        });
       });
     });
   }
