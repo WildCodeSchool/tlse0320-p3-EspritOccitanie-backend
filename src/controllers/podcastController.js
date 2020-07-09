@@ -99,6 +99,11 @@ class PodcastController {
       }
       req.podcast_id = req.params.id;
       const ro_podcast_podcast_id = req.podcast_id;
+
+      if (req.body.ro_animator_animator_id.length === 0) {
+        return res.status(200).json('ok');
+      }
+
       return PodcastModel.deleteAnimatorPodcast(req, ro_podcast_podcast_id, (err2) => {
         if (err2) {
           return res.status(500).json({ error: `${err2}` });
