@@ -70,7 +70,8 @@ class PodcastModel {
       ORDER BY podcast_creation_date DESC`,
     (err, results) => {
       callback(err, results);
-    });
+    },
+);
   }
 
   static get4LatestPodcasts(req, callback) {
