@@ -39,21 +39,21 @@ class PodcastController {
         if (err) {
           return res.status(500).json({ error: err.message, sql: err.sql });
         }
-        return res.status(200).json({ result });
+        return res.status(200).json(result);
       });
     } else if (animator) {
       PodcastModel.getPodcastFromAnimator(req, animator, (err, result) => {
         if (err) {
           return res.status(500).json({ error: err.message, sql: err.sql });
         }
-        return res.status(200).json({ result });
+        return res.status(200).json(result);
       });
     } else if (categorie) {
       PodcastModel.getPodcastWithCategorie(req, categorie, (err, result) => {
         if (err) {
           return res.status(500).json({ error: err.message, sql: err.sql });
         }
-        return res.status(200).json({ result });
+        return res.status(200).json(result);
       });
     } else {
       PodcastModel.getAllPodcasts(req, (err, results) => {
@@ -70,7 +70,7 @@ class PodcastController {
       if (err) {
         return res.status(500).json({ error: `${err}` });
       }
-      return res.status(200).json(results[0]);
+      return res.status(200).json(results);
     });
   }
 
