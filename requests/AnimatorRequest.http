@@ -32,4 +32,7 @@ Content-Type: application/json
 DELETE http://localhost:3001/animator/4
 
 ### get animator from program
-GET http://localhost:3001/animator?program=21
+GET http://localhost:3001/animator?program=2
+
+### get animator from podcast
+GET http://localhost:3001/animator?podcast=1
