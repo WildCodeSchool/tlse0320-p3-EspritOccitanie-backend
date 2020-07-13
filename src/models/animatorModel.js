@@ -20,6 +20,12 @@ class AnimatorModel {
         });
     }
 
+    static getAllAnimatorFromPodcast(req, podcast, callback) {
+        connection.query('SELECT ro_animator_animator_id FROM ro_podcast_has_ro_animator WHERE ro_podcast_podcast_id = ?', [podcast], (err, results) => {
+            callback(err, results);
+        });
+    }
+
     static putAnimator(req, callback) {
         connection.query('UPDATE ro_animator SET ? WHERE animator_id = ?', [req.body, req.params.id], (err, results) => {
             callback(err, results);
