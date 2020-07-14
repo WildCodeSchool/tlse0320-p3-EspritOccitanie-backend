@@ -7,9 +7,8 @@ class PodcastModel {
   static addAnimator(req, ro_podcast_podcast_id, callback) {
     const { ro_animator_animator_id } = req.body;
     const multiAnimator = [];
-    ro_animator_animator_id.map((animatorId) =>
-      multiAnimator.push([ro_podcast_podcast_id, animatorId]),
-    );
+     ro_animator_animator_id.map((animatorId) => multiAnimator
+     .push([ro_podcast_podcast_id, animatorId]));
     connection.query(
       'INSERT INTO ro_podcast_has_ro_animator(ro_podcast_podcast_id, ro_animator_animator_id) VALUES ?',
       [multiAnimator],

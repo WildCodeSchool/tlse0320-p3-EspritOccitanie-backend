@@ -77,7 +77,8 @@ class ProgramModel {
       ON ro_program.ro_category_category_id = ro_category.category_id`,
       (err, results) => {
       callback(err, results);
-    });
+    },
+);
   }
 
   static getAllProgramsFromAnimator(req, animator, callback) {
@@ -91,7 +92,8 @@ class ProgramModel {
       WHERE ro_animator_animator_id = ?`,
       [animator], (err, results) => {
       callback(err, results);
-    });
+    },
+    );
   }
 
   static getAllProgramsFromCategory(req, categorie, callback) {
@@ -103,7 +105,8 @@ class ProgramModel {
       WHERE ro_category_category_id = ?`,
     [categorie], (err, results) => {
       callback(err, results);
-    });
+    },
+    );
   }
 
   static delProgram(req, callback) {
