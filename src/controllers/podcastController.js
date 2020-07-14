@@ -19,13 +19,13 @@ class PodcastController {
   static postPodcast(req, res) {
     PodcastModel.postPodcast(req, (err, results) => {
       if (err) {
-        return res.status(500).json({ error: `${err}`, data: 'refq' });
+        return res.status(500).json({ error: `${err}` });
       }
       req.podcast_id = results.insertId;
       const ro_podcast_podcast_id = req.podcast_id;
       return PodcastModel.addAnimator(req, ro_podcast_podcast_id, (err1, result1) => {
         if (err1) {
-          return res.status(500).json({ error: `${err1}`, data: 'refq' });
+          return res.status(500).json({ error: `${err1}` });
         }
         return res.status(200).json(result1);
       });
@@ -60,7 +60,7 @@ class PodcastController {
         if (err) {
           return res.status(500).json({ error: `${err}` });
         }
-        return res.status(200).json(results);
+          return res.status(200).json(results);
       });
     }
   }

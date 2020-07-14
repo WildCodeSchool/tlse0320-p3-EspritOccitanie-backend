@@ -22,7 +22,7 @@ app.post('/Contact', (req) => {
   });
   const mailOptions = {
     from: req.body.sender,
-    to: req.body.destination,
+    to: 'espritoccitanie@gmail.com',
     subject: req.body.subject,
     text: req.body.message,
     html: `<b>${req.body.message}</b>`,

@@ -7,9 +7,9 @@ class PodcastModel {
   static addAnimator(req, ro_podcast_podcast_id, callback) {
     const { ro_animator_animator_id } = req.body;
     const multiAnimator = [];
-    ro_animator_animator_id
-      .map((animatorId) => multiAnimator
-        .push([ro_podcast_podcast_id, animatorId]));
+    ro_animator_animator_id.map((animatorId) =>
+      multiAnimator.push([ro_podcast_podcast_id, animatorId]),
+    );
     connection.query(
       'INSERT INTO ro_podcast_has_ro_animator(ro_podcast_podcast_id, ro_animator_animator_id) VALUES ?',
       [multiAnimator],
@@ -57,21 +57,17 @@ class PodcastModel {
 
   static getAllPodcasts(req, callback) {
     connection.query(
-      `SELECT ro_podcast.*, ro_program.program_title, ro_category.category_name, ro_podcast_has_ro_animator.*, ro_animator.* 
+      `SELECT ro_podcast.*, ro_program.program_title, ro_category.category_name
       FROM ro_podcast 
       INNER JOIN ro_program 
       ON ro_podcast.ro_program_program_id = ro_program.program_id 
       INNER JOIN ro_category 
       ON ro_podcast.ro_category_category_id = ro_category.category_id
-      INNER JOIN ro_podcast_has_ro_animator
-      ON ro_podcast.podcast_id = ro_podcast_has_ro_animator.ro_podcast_podcast_id
-      INNER JOIN ro_animator
-      ON ro_podcast_has_ro_animator.ro_animator_animator_id = ro_animator.animator_id
       ORDER BY podcast_creation_date DESC`,
-    (err, results) => {
-      callback(err, results);
-    },
-);
+      (err, results) => {
+        callback(err, results);
+      },
+    );
   }
 
   static get4LatestPodcasts(req, callback) {
@@ -126,16 +122,12 @@ class PodcastModel {
 
   static getOnePodcast(req, cb) {
     connection.query(
-      `SELECT ro_podcast.*, ro_program.program_title, ro_category.category_name, ro_podcast_has_ro_animator.*, ro_animator.* 
+      `SELECT ro_podcast.*, ro_program.program_title, ro_category.category_name 
       FROM ro_podcast 
       INNER JOIN ro_program 
       ON ro_podcast.ro_program_program_id = ro_program.program_id 
       INNER JOIN ro_category 
       ON ro_podcast.ro_category_category_id = ro_category.category_id
-      INNER JOIN ro_podcast_has_ro_animator
-      ON ro_podcast.podcast_id = ro_podcast_has_ro_animator.ro_podcast_podcast_id
-      INNER JOIN ro_animator
-      ON ro_podcast_has_ro_animator.ro_animator_animator_id = ro_animator.animator_id
       WHERE podcast_id = ?`,
       req.params.id,
       (err, results, fields) => {
@@ -150,7 +142,8 @@ class PodcastModel {
       FROM ro_podcast 
       INNER JOIN ro_program 
       ON ro_podcast.ro_program_program_id = ro_program.program_id 
-      INNER JOIN ro_category ON ro_podcast.ro_category_category_id = ro_category.category_id 
+      INNER JOIN ro_category 
+      ON ro_podcast.ro_category_category_id = ro_category.category_id 
       WHERE ro_program_program_id = ?`,
       [program],
       (err, results) => {

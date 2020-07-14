@@ -70,19 +70,38 @@ class ProgramModel {
   }
 
   static getAllPrograms(req, callback) {
-    connection.query('SELECT * FROM ro_program', (err, results) => {
+    connection.query(
+      `SELECT ro_program.*, ro_category.category_name 
+      FROM ro_program
+      INNER JOIN ro_category 
+      ON ro_program.ro_category_category_id = ro_category.category_id`,
+      (err, results) => {
       callback(err, results);
     });
   }
 
   static getAllProgramsFromAnimator(req, animator, callback) {
-    connection.query('SELECT ro_program_program_id FROM ro_animator_has_ro_program WHERE ro_animator_animator_id = ?', [animator], (err, results) => {
+    connection.query(
+      `SELECT ro_program.*, ro_category.category_name 
+      FROM ro_program
+      INNER JOIN  ro_animator_has_ro_program
+      ON ro_program.program_id = ro_animator_has_ro_program.ro_program_program_id
+      INNER JOIN ro_category
+      ON ro_program.ro_category_category_id = ro_category.category_id
+      WHERE ro_animator_animator_id = ?`,
+      [animator], (err, results) => {
       callback(err, results);
     });
   }
 
   static getAllProgramsFromCategory(req, categorie, callback) {
-    connection.query('SELECT * FROM ro_program WHERE ro_category_category_id = ?', [categorie], (err, results) => {
+    connection.query(
+      `SELECT ro_program.*, ro_category.category_name 
+      FROM ro_program
+      INNER JOIN ro_category
+      ON ro_program.ro_category_category_id = ro_category.category_id
+      WHERE ro_category_category_id = ?`,
+    [categorie], (err, results) => {
       callback(err, results);
     });
   }
