@@ -41,14 +41,15 @@ class ProgramController {
         }
         return res.status(200).json(results);
       });
-    } else if (categorie) {
+    }
+    if (categorie) {
       ProgramModel.getAllProgramsFromCategory(req, categorie, (err, results) => {
         if (err) {
           return res.status(500).json({ error: `${err}` });
         }
         return res.status(200).json(results);
       });
-    } else {
+    } else if (!animator && !categorie) {
       ProgramModel.getAllPrograms(req, (err, results) => {
         if (err) {
           return res.status(500).json({ error: `${err}` });
