@@ -196,6 +196,7 @@ Elle est egalement souvent sollicitée pour animer des conférences et tables ro
         'https://www.espritoccitanie.fr/upload/equipes/normal/5dc533f3f2e265.30564208_mini.jpg'
     );
 
+INSERT INTO `ro_category` VALUES (7,'Aéronautique'),(10,'Architecture - Urbanisme'),(6,'Culture'),(1,'Economie'),(5,'Environnement'),(9,'Multithèmes'),(3,'Musique'),(2,'Politique'),(8,'Santé'),(4,'Société'),(11,'Sport');
 INSERT INTO
     `ro_program`
 VALUES
