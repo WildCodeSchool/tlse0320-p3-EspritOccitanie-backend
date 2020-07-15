@@ -1,4 +1,5 @@
-CREATE SCHEMA IF NOT EXISTS `radiodb_eo`;
+CREATE SCHEMA `radiodb_eo`;
+USE `radiodb_eo`;
 SET FOREIGN_KEY_CHECKS = 0; 
 
 CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_category` (
