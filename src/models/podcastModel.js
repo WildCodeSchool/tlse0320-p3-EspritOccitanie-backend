@@ -140,7 +140,7 @@ class PodcastModel {
       `SELECT ro_podcast.*, ro_program.program_title, ro_category.category_name 
       FROM ro_podcast 
       INNER JOIN ro_program 
-      ON ro_podcast.ro_program_program_id = ro_program.program_id 
+      ON ro_podcast.ro_program_program_id = ro_program.program_id
       INNER JOIN ro_category 
       ON ro_podcast.ro_category_category_id = ro_category.category_id 
       WHERE ro_program_program_id = ?`,
@@ -153,15 +153,15 @@ class PodcastModel {
 
   static getPodcastFromAnimator(req, animator, callback) {
     connection.query(
-      `SELECT ro_podcast_podcast_id, ro_podcast.*, ro_program.program_title, ro_category.category_name 
+      `SELECT ro_podcast.*, ro_program.program_title, ro_category.category_name 
       FROM ro_podcast 
-      INNER JOIN ro_podcast_has_ro_animator 
+      JOIN ro_podcast_has_ro_animator 
       ON ro_podcast.podcast_id = ro_podcast_has_ro_animator.ro_podcast_podcast_id 
-      INNER JOIN ro_category 
+      JOIN ro_category 
       ON ro_podcast.ro_category_category_id = ro_category.category_id 
-      INNER JOIN ro_program 
+      JOIN ro_program 
       ON ro_podcast.ro_program_program_id = ro_program.program_id
-      WHERE ro_podcast_has_ro_animator.ro_animator_animator_id = ?`,
+      WHERE ro_animator_animator_id = ?`,
       [animator],
       (err, results) => {
         callback(err, results);
