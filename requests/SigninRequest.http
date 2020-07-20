@@ -1,0 +1,10 @@
+### create a user
+POST http://localhost:4000/signin
+Accept: application/json
+Content-Type: application/json
+
+{
+      "admin_user": "espritoccitanie",
+      "admin_email": "espritoccitanie@gmail.com",
+      "admin_password": "Radioeo2021"
+}

@@ -1,0 +1,51 @@
+### Get all podcast
+GET http://localhost:3001/podcast
+
+### Get podcast by id
+GET http://localhost:3001/podcast/2
+
+### Post a podcast (json)
+POST http://localhost:3001/podcast
+Accept: application/json
+Content-Type: application/json
+
+{
+      "podcast_title": "new podcast",
+      "podcast_duration": "40min",
+      "podcast_description": "new podcast5",
+      "podcast_image": null,
+      "podcast_mp3": "podacast6.mp3",
+      "podcast_creation_date": "2013-07-08 09:00:00",
+      "ro_program_program_id": 4,
+      "ro_category_category_id": 1,
+      "ro_animator_animator_id": [1, 2]
+}
+
+### Update a podcast
+PUT  http://localhost:3001/podcast/1
+Content-Type: application/json
+
+{
+      "podcast_title": "Update Podcast",
+      "podcast_duration": "40min",
+      "podcast_description": "new podcast5",
+      "podcast_image": null,
+      "podcast_mp3": "podacast6.mp3",
+      "podcast_creation_date": "2013-07-08 09:00:00",
+      "ro_program_program_id": 1,
+      "ro_category_category_id": 1,
+      "ro_animator_animator_id": [2, 4]
+}
+
+###Delete a podcast
+DELETE http://localhost:3001/podcast/4
+
+### get all podcasts from program
+GET http://localhost:3001/podcast?program=2
+
+### get all podcasts from animator
+GET http://localhost:3001/podcast?animator=2
+
+### get all podcasts from category
+GET http://localhost:3001/podcast?categorie=1
+

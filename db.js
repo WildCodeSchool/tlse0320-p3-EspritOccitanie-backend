@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const config = process.env.NODE_ENV === 'test'
   ? {
     host: process.env.DB_HOST_TEST || 'localhost',
-    port: process.env.DB_PORT_TEST || '3308',
+    port: process.env.DB_PORT_TEST || '3306',
     user: process.env.DB_USER_TEST || 'root',
     password: process.env.DB_PASS_TEST || 'root',
     database: process.env.DB_NAME_TEST || 'sample_db_test',

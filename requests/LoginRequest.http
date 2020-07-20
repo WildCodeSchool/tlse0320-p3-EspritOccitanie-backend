@@ -1,0 +1,10 @@
+### create a user
+POST http://localhost:3001/login
+Accept: application/json
+Content-Type: application/json
+
+{
+      "admin_user": "toto",
+      "admin_email": "toto@toto.to",
+      "admin_password": "toto"
+}

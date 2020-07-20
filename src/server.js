@@ -1,68 +1,48 @@
 const express = require('express');
 const cors = require('cors');
+const nodemailer = require('nodemailer');
 
 const app = express();
-const PORT = process.env.PORT || (process.env.NODE_ENV === 'test' ? 3001 : 3000);
-const connection = require('../db');
+const PORT = process.env.PORT || (process.env.NODE_ENV === 'test' ? 3001 : 4000);
 
 app.use(express.json());
 app.use(cors());
 
-app.get('/users', (req, res) => {
-  connection.query('SELECT * from users', (error, results) => {
-    res.status(200).json({
-      status: 'success',
-      results,
-    });
+const routes = require('./routes');
+
+app.use('/', routes);
+
+app.post('/Contact', (req) => {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'espritoccitanie@gmail.com',
+      pass: 'Radioeo2021',
+    },
   });
+  const mailOptions = {
+    from: req.body.sender,
+    to: 'espritoccitanie@gmail.com',
+    subject: req.body.subject,
+    text: req.body.message,
+    html: `<b>${req.body.message}</b>`,
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    return console.log(`Message sent: ${info.response}`);
+  });
+
+  transporter.close();
 });
 
-app.get('/users/:id', (req, res) => {
-  const { id } = req.params;
-  try {
-    connection.query('SELECT * from users WHERE `user_id`= ?', id, (error, results) => {
-      if (results.length === 0) {
-        res.status(404).json({
-          status: 'error',
-          errorMessage: 'Not found',
-        });
-      } else {
-        res.status(200).json({
-          status: 'success',
-          results: results[0],
-        });
-      }
-    });
-  } catch (err) {
-    res.status(500).json({
-      status: 'error',
-      errorMessage: 'Our server encountered an error performing the request',
-    });
-  }
+app.use((req, res) => {
+  res.sendStatus(404);
 });
 
-app.post('/users', (req, res) => {
-  const { body: formData } = req;
-  try {
-    const query = 'INSERT INTO users SET ?';
-    connection.query(query, formData, (error, results) => {
-      res.status(201).json({
-        status: 'success',
-        userCreated: {
-          user_id: results.insertId,
-          ...formData,
-        },
-      });
-    });
-  } catch (err) {
-    res.status(500).json({
-      status: 'error',
-      errorMessage: 'Our server encountered an error performing the request',
-    });
-  }
-});
 const server = app.listen(PORT, () => {
-  console.log(`🌍 Server is running on port ${PORT}`);
+  console.log(`🌍 Server is running on port ${PORT} `);
 });
 
 module.exports = server;
