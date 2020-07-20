@@ -3,7 +3,7 @@ const cors = require('cors');
 const nodemailer = require('nodemailer');
 
 const app = express();
-const PORT = process.env.PORT || (process.env.NODE_ENV === 'test' ? 3001 : 3000);
+const PORT = process.env.PORT || (process.env.NODE_ENV === 'test' ? 3001 : 4000);
 
 app.use(express.json());
 app.use(cors());
@@ -17,7 +17,7 @@ app.post('/Contact', (req) => {
     service: 'gmail',
     auth: {
       user: 'espritoccitanie@gmail.com',
-      pass: 'password',
+      pass: 'Radioeo2021',
     },
   });
   const mailOptions = {
