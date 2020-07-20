@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_admin` (
     `admin_id` INT NOT NULL AUTO_INCREMENT,
     `admin_user` VARCHAR(16) NOT NULL,
     `admin_email` VARCHAR(255) NOT NULL,
-    `admin_password` VARCHAR(32) NOT NULL,
+    `admin_password` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`admin_id`),
     UNIQUE INDEX `admin_email_UNIQUE` (`admin_email` ASC)
 );
@@ -92,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_podcast_has_ro_animator` (
     CONSTRAINT `fk_ro_podcast_has_ro_animator_ro_podcast1` FOREIGN KEY (`ro_podcast_podcast_id`) REFERENCES `radiodb_eo`.`ro_podcast` (`podcast_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
     CONSTRAINT `fk_ro_podcast_has_ro_animator_ro_animator1` FOREIGN KEY (`ro_animator_animator_id`) REFERENCES `radiodb_eo`.`ro_animator` (`animator_id`) ON DELETE CASCADE ON UPDATE NO ACTION
 );
+INSERT INTO `ro_admin` VALUES (3,'espritoccitanie','espritoccitanie@gmail.com','$2b$10$JXwP58ZBVJkSUBLaYbm4JewRn5roaa5Q0g/9gRdpNq4zuIA9BD0VO');
 
 INSERT INTO
     `ro_animator`
