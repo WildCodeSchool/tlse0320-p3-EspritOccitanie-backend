@@ -13,8 +13,7 @@ const checkCategoryForm = [
     .withMessage('is integer')
     .isLength({ min: 1, max: 60 })
     .withMessage('invalid number caracteres')
-    .trim()
-    .escape(),
+    .trim(),
 ];
 
 module.exports = { checkCategoryForm };
