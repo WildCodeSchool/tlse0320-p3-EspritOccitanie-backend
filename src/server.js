@@ -34,7 +34,6 @@ app.post('/Contact', (req) => {
     }
     return console.log(`Message sent: ${info.response}`);
   });
-  
   transporter.close();
 });
 
@@ -42,13 +41,16 @@ app.use((req, res) => {
   res.sendStatus(404);
 });
 
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../../tlse0320-p3-EspritOccitanie-front/build/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
+app.get('/*', (req, res) => {
+  res.sendFile(
+    path.join(__dirname, '../../tlse0320-p3-EspritOccitanie-front/build/index.html'),
+    (err) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+    },
+  );
+});
 
 const server = app.listen(PORT, () => {
   console.log(`🌍 Server is running on port ${PORT} `);
