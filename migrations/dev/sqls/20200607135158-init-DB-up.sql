@@ -1,4 +1,3 @@
-CREATE SCHEMA `radiodb_eo`;
 USE `radiodb_eo`;
 SET FOREIGN_KEY_CHECKS = 0; 
 

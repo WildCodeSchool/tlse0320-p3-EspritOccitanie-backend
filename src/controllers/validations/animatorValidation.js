@@ -13,22 +13,19 @@ const checkAnimatorForm = [
         .withMessage('is integer')
         .isLength({ min: 1, max: 60 })
         .withMessage('invalid number caracteres')
-        .trim()
-        .escape(),
+        .trim(),
     check('animator_description')
         .optional()
         .not()
         .isInt()
         .withMessage('is integer')
-        .trim()
-        .escape(),
+        .trim(),
     check('animator_image')
         .optional()
         .not()
         .isInt()
         .withMessage('is integer')
-        .trim()
-        .escape(),
+        .trim(),
 ];
 
 module.exports = { checkAnimatorForm };
