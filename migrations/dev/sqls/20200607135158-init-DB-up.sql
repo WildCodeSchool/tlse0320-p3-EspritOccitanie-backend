@@ -1,14 +1,13 @@
-USE `radiodb_eo`;
 SET FOREIGN_KEY_CHECKS = 0; 
 
-CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_category` (
+CREATE TABLE IF NOT EXISTS `ro_category` (
     `category_id` INT NOT NULL AUTO_INCREMENT,
     `category_name` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`category_id`),
     UNIQUE INDEX `category_name_UNIQUE` (`category_name` ASC)
 );
 
-CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_program` (
+CREATE TABLE IF NOT EXISTS `ro_program` (
     `program_id` INT NOT NULL AUTO_INCREMENT,
     `program_title` VARCHAR(45) NOT NULL,
     `program_description` TEXT(10000) NULL,
@@ -17,12 +16,12 @@ CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_program` (
     PRIMARY KEY (`program_id`),
     INDEX `fk_ro_program_ro_category1_idx` (`ro_category_category_id` ASC),
     UNIQUE INDEX `program_title_UNIQUE` (`program_title` ASC),
-    CONSTRAINT `fk_ro_program_ro_category1` FOREIGN KEY (`ro_category_category_id`) REFERENCES `radiodb_eo`.`ro_category` (`category_id`) ON DELETE
+    CONSTRAINT `fk_ro_program_ro_category1` FOREIGN KEY (`ro_category_category_id`) REFERENCES `ro_category` (`category_id`) ON DELETE
     SET
         NULL ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_admin` (
+CREATE TABLE IF NOT EXISTS `ro_admin` (
     `admin_id` INT NOT NULL AUTO_INCREMENT,
     `admin_user` VARCHAR(16) NOT NULL,
     `admin_email` VARCHAR(255) NOT NULL,
@@ -31,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_admin` (
     UNIQUE INDEX `admin_email_UNIQUE` (`admin_email` ASC)
 );
 
-CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_podcast` (
+CREATE TABLE IF NOT EXISTS `ro_podcast` (
     `podcast_id` INT NOT NULL AUTO_INCREMENT,
     `podcast_title` VARCHAR(255) NOT NULL,
     `podcast_duration` VARCHAR(45) NULL,
@@ -44,13 +43,13 @@ CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_podcast` (
     PRIMARY KEY (`podcast_id`, `ro_program_program_id`),
     INDEX `fk_ro_podcast_ro_program1_idx` (`ro_program_program_id` ASC),
     INDEX `fk_ro_podcast_ro_category1_idx` (`ro_category_category_id` ASC),
-    CONSTRAINT `fk_ro_podcast_ro_program1` FOREIGN KEY (`ro_program_program_id`) REFERENCES `radiodb_eo`.`ro_program` (`program_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    CONSTRAINT `fk_ro_podcast_ro_category1` FOREIGN KEY (`ro_category_category_id`) REFERENCES `radiodb_eo`.`ro_category` (`category_id`) ON DELETE
+    CONSTRAINT `fk_ro_podcast_ro_program1` FOREIGN KEY (`ro_program_program_id`) REFERENCES `ro_program` (`program_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `fk_ro_podcast_ro_category1` FOREIGN KEY (`ro_category_category_id`) REFERENCES `ro_category` (`category_id`) ON DELETE
     SET
         NULL ON UPDATE NO ACTION
 );
 
-CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_animator` (
+CREATE TABLE IF NOT EXISTS `ro_animator` (
     `animator_id` INT NOT NULL AUTO_INCREMENT,
     `animator_firstname` VARCHAR(45) NOT NULL,
     `animator_lastname` VARCHAR(45) NOT NULL,
@@ -59,14 +58,14 @@ CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_animator` (
     PRIMARY KEY (`animator_id`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_tag` (
+CREATE TABLE IF NOT EXISTS `ro_tag` (
     `tag_id` INT NOT NULL AUTO_INCREMENT,
     `tag_name` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`tag_id`),
     UNIQUE INDEX `tag_name_UNIQUE` (`tag_name` ASC)
 );
 
-CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_animator_has_ro_program` (
+CREATE TABLE IF NOT EXISTS `ro_animator_has_ro_program` (
     `ro_animator_animator_id` INT NOT NULL,
     `ro_program_program_id` INT NOT NULL,
     PRIMARY KEY (
@@ -75,11 +74,11 @@ CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_animator_has_ro_program` (
     ),
     INDEX `fk_ro_animator_has_ro_program_ro_program1_idx` (`ro_program_program_id` ASC),
     INDEX `fk_ro_animator_has_ro_program_ro_animator1_idx` (`ro_animator_animator_id` ASC),
-    CONSTRAINT `fk_ro_animator_has_ro_program_ro_animator1` FOREIGN KEY (`ro_animator_animator_id`) REFERENCES `radiodb_eo`.`ro_animator` (`animator_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-    CONSTRAINT `fk_ro_animator_has_ro_program_ro_program1` FOREIGN KEY (`ro_program_program_id`) REFERENCES `radiodb_eo`.`ro_program` (`program_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+    CONSTRAINT `fk_ro_animator_has_ro_program_ro_animator1` FOREIGN KEY (`ro_animator_animator_id`) REFERENCES `ro_animator` (`animator_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+    CONSTRAINT `fk_ro_animator_has_ro_program_ro_program1` FOREIGN KEY (`ro_program_program_id`) REFERENCES `ro_program` (`program_id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_podcast_has_ro_animator` (
+CREATE TABLE IF NOT EXISTS `ro_podcast_has_ro_animator` (
     `ro_podcast_podcast_id` INT NOT NULL,
     `ro_animator_animator_id` INT NOT NULL,
     PRIMARY KEY (
@@ -88,8 +87,8 @@ CREATE TABLE IF NOT EXISTS `radiodb_eo`.`ro_podcast_has_ro_animator` (
     ),
     INDEX `fk_ro_podcast_has_ro_animator_ro_animator1_idx` (`ro_animator_animator_id` ASC),
     INDEX `fk_ro_podcast_has_ro_animator_ro_podcast1_idx` (`ro_podcast_podcast_id` ASC),
-    CONSTRAINT `fk_ro_podcast_has_ro_animator_ro_podcast1` FOREIGN KEY (`ro_podcast_podcast_id`) REFERENCES `radiodb_eo`.`ro_podcast` (`podcast_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-    CONSTRAINT `fk_ro_podcast_has_ro_animator_ro_animator1` FOREIGN KEY (`ro_animator_animator_id`) REFERENCES `radiodb_eo`.`ro_animator` (`animator_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+    CONSTRAINT `fk_ro_podcast_has_ro_animator_ro_podcast1` FOREIGN KEY (`ro_podcast_podcast_id`) REFERENCES `ro_podcast` (`podcast_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+    CONSTRAINT `fk_ro_podcast_has_ro_animator_ro_animator1` FOREIGN KEY (`ro_animator_animator_id`) REFERENCES `ro_animator` (`animator_id`) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 INSERT INTO `ro_admin` VALUES (3,'espritoccitanie','espritoccitanie@gmail.com','$2b$10$JXwP58ZBVJkSUBLaYbm4JewRn5roaa5Q0g/9gRdpNq4zuIA9BD0VO');
 
@@ -358,7 +357,7 @@ VALUES
     (19, 16);
 
 INSERT INTO
-    `radiodb_eo`.`ro_podcast` (
+    `ro_podcast` (
         `podcast_title`,
         `podcast_duration`,
         `podcast_description`,
