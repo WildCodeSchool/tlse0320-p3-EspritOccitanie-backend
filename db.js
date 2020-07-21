@@ -16,6 +16,7 @@ const config = process.env.NODE_ENV === 'test'
     password: process.env.DB_PASS || 'root',
     database: process.env.DB_NAME || 'sample_db',
     connectionLimit: 10,
+    charset : 'utf8',
   };
 
 const pool = mysql.createPool(config);
