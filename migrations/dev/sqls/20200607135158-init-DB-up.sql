@@ -1,11 +1,15 @@
-SET FOREIGN_KEY_CHECKS = 0; 
+SET
+    FOREIGN_KEY_CHECKS = 0;
+
+SET
+    NAMES 'utf8';
 
 CREATE TABLE IF NOT EXISTS `ro_category` (
     `category_id` INT NOT NULL AUTO_INCREMENT,
     `category_name` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`category_id`),
     UNIQUE INDEX `category_name_UNIQUE` (`category_name` ASC)
-);
+) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_bin;
 
 CREATE TABLE IF NOT EXISTS `ro_program` (
     `program_id` INT NOT NULL AUTO_INCREMENT,
@@ -19,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `ro_program` (
     CONSTRAINT `fk_ro_program_ro_category1` FOREIGN KEY (`ro_category_category_id`) REFERENCES `ro_category` (`category_id`) ON DELETE
     SET
         NULL ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_bin;
 
 CREATE TABLE IF NOT EXISTS `ro_admin` (
     `admin_id` INT NOT NULL AUTO_INCREMENT,
@@ -28,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `ro_admin` (
     `admin_password` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`admin_id`),
     UNIQUE INDEX `admin_email_UNIQUE` (`admin_email` ASC)
-);
+) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_bin;
 
 CREATE TABLE IF NOT EXISTS `ro_podcast` (
     `podcast_id` INT NOT NULL AUTO_INCREMENT,
@@ -47,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `ro_podcast` (
     CONSTRAINT `fk_ro_podcast_ro_category1` FOREIGN KEY (`ro_category_category_id`) REFERENCES `ro_category` (`category_id`) ON DELETE
     SET
         NULL ON UPDATE NO ACTION
-);
+) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_bin;
 
 CREATE TABLE IF NOT EXISTS `ro_animator` (
     `animator_id` INT NOT NULL AUTO_INCREMENT,
@@ -56,14 +60,14 @@ CREATE TABLE IF NOT EXISTS `ro_animator` (
     `animator_description` TEXT(10000) NULL,
     `animator_image` VARCHAR(255) NULL,
     PRIMARY KEY (`animator_id`)
-) ENGINE = InnoDB;
+) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_bin;
 
 CREATE TABLE IF NOT EXISTS `ro_tag` (
     `tag_id` INT NOT NULL AUTO_INCREMENT,
     `tag_name` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`tag_id`),
     UNIQUE INDEX `tag_name_UNIQUE` (`tag_name` ASC)
-);
+) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_bin;
 
 CREATE TABLE IF NOT EXISTS `ro_animator_has_ro_program` (
     `ro_animator_animator_id` INT NOT NULL,
@@ -76,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `ro_animator_has_ro_program` (
     INDEX `fk_ro_animator_has_ro_program_ro_animator1_idx` (`ro_animator_animator_id` ASC),
     CONSTRAINT `fk_ro_animator_has_ro_program_ro_animator1` FOREIGN KEY (`ro_animator_animator_id`) REFERENCES `ro_animator` (`animator_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
     CONSTRAINT `fk_ro_animator_has_ro_program_ro_program1` FOREIGN KEY (`ro_program_program_id`) REFERENCES `ro_program` (`program_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_bin;
 
 CREATE TABLE IF NOT EXISTS `ro_podcast_has_ro_animator` (
     `ro_podcast_podcast_id` INT NOT NULL,
@@ -89,8 +93,17 @@ CREATE TABLE IF NOT EXISTS `ro_podcast_has_ro_animator` (
     INDEX `fk_ro_podcast_has_ro_animator_ro_podcast1_idx` (`ro_podcast_podcast_id` ASC),
     CONSTRAINT `fk_ro_podcast_has_ro_animator_ro_podcast1` FOREIGN KEY (`ro_podcast_podcast_id`) REFERENCES `ro_podcast` (`podcast_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
     CONSTRAINT `fk_ro_podcast_has_ro_animator_ro_animator1` FOREIGN KEY (`ro_animator_animator_id`) REFERENCES `ro_animator` (`animator_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-);
-INSERT INTO `ro_admin` VALUES (3,'espritoccitanie','espritoccitanie@gmail.com','$2b$10$JXwP58ZBVJkSUBLaYbm4JewRn5roaa5Q0g/9gRdpNq4zuIA9BD0VO');
+) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_bin;
+
+INSERT INTO
+    `ro_admin`
+VALUES
+    (
+        3,
+        'espritoccitanie',
+        'espritoccitanie@gmail.com',
+        '$2b$10$JXwP58ZBVJkSUBLaYbm4JewRn5roaa5Q0g/9gRdpNq4zuIA9BD0VO'
+    );
 
 INSERT INTO
     `ro_animator`
@@ -195,7 +208,22 @@ Elle est egalement souvent sollicitée pour animer des conférences et tables ro
         'https://www.espritoccitanie.fr/upload/equipes/normal/5dc533f3f2e265.30564208_mini.jpg'
     );
 
-INSERT INTO `ro_category` VALUES (7,'Aéronautique'),(10,'Architecture - Urbanisme'),(6,'Culture'),(1,'Economie'),(5,'Environnement'),(9,'Multithèmes'),(3,'Musique'),(2,'Politique'),(8,'Santé'),(4,'Société'),(11,'Sport');
+INSERT INTO
+    `ro_category`
+VALUES
+    (7, 'Aéronautique'),
+    (10, 'Architecture - Urbanisme'),
+    (6, 'Culture'),
+    (1, 'Economie'),
+    (5, 'Environnement'),
+    (9, 'Multithèmes'),
+    (3, 'Musique'),
+    (2, 'Politique'),
+    (8, 'Santé'),
+    (4, 'Société'),
+    (11, 'Sport');
+
+
 INSERT INTO
     `ro_program`
 VALUES
@@ -385,10 +413,9 @@ VALUES
         'https://www.espritoccitanie.fr/upload/podcasts/photos/main/5eec8ec4060ba8.36675449_mini.jpg',
         'http://esprit-occitanie.fr/emissions/capecap/2020-06-15capecap(yannarthusbertrand).mp3',
         '2020-07-22 00:00:00',
-         1,
+        1,
         4
     ),
-
     (
         'PROGRESSIF',
         '55 min',
@@ -396,7 +423,7 @@ VALUES
         '',
         'http://www.esprit-occitanie.fr/emissions/progressif/2020-03-02progressif.mp3',
         '2020-03-02 00:00:00',
-          2,
+        2,
         4
     ),
     (
@@ -406,7 +433,7 @@ VALUES
         '',
         'http://esprit-occitanie.fr/emissions/monbeauquartier/2019-12-03monbeauquartier.mp3',
         '2019-12-03 00:00:00',
-          2,
+        2,
         4
     ),
     (
@@ -416,7 +443,7 @@ VALUES
         '',
         'http://www.esprit-occitanie.fr/emissions/monbeauquartier/2019-10-29monbeauquartier.mp3',
         '2019-10-30 00:00:00',
-          2,
+        2,
         4
     ),
     (
@@ -426,7 +453,7 @@ VALUES
         '',
         'http://www.esprit-occitanie.fr/emissions/patchwork/2020-03-17patchwork.mp3',
         '2020-03-17 00:00:00',
-          2,
+        2,
         4
     ),
     (
@@ -444,7 +471,7 @@ VALUES
         '',
         'http://esprit-occitanie.fr/emissions/patchwork/2020-03-10patchwork.mp3',
         '2020-03-10 00:00:00',
-          2,
+        2,
         4
     ),
     (
@@ -454,7 +481,7 @@ VALUES
         '',
         'http://esprit-occitanie.fr/emissions/economica/2020-06-12economica(georgesdhers).mp3',
         '2020-06-12 00:00:00',
-          2,
+        2,
         4
     ),
     (
@@ -464,7 +491,7 @@ VALUES
         '',
         'http://www.esprit-occitanie.fr/emissions/economica/2020-03-13economica.mp3',
         '2020-03-13 00:00:00',
-          2,
+        2,
         4
     ),
     (
@@ -474,7 +501,7 @@ VALUES
         '',
         'http://www.esprit-occitanie.fr/emissions/cavamieux/2020-03-04cavamieux.mp3',
         '2020-02-04 00:00:00',
-          2,
+        2,
         4
     ),
     (
@@ -484,11 +511,9 @@ VALUES
         '',
         'http://www.esprit-occitanie.fr/emissions/ainsivalavie/2020-03-12avlv.mp3',
         '2020-03-12 00:00:00',
-          2,
+        2,
         4
     );
-
-
 
 INSERT INTO
     `ro_podcast_has_ro_animator`(
@@ -515,5 +540,6 @@ VALUES
     (9, 11),
     (10, 7),
     (11, 5);
- 
-SET FOREIGN_KEY_CHECKS = 1; 
+
+SET
+    FOREIGN_KEY_CHECKS = 1;
