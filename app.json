@@ -1,7 +1,0 @@
-{
-  "scripts": {
-    "dokku": {
-      "predeploy": "npm install -g db-migrate"
-    }
-  }
-}

@@ -37,10 +37,6 @@ app.post('/Contact', (req) => {
   transporter.close();
 });
 
-app.use((req, res) => {
-  res.sendStatus(404);
-});
-
 app.get('/*', (req, res) => {
   res.sendFile(
     path.join(__dirname, '../../tlse0320-p3-EspritOccitanie-front/build/index.html'),
