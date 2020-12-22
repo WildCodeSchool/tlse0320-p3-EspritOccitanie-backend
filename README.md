@@ -10,13 +10,15 @@ Le site de la radio Esprit Occitanie recense une bibliothèque de podcasts. L'ut
 
 ## Configuration
 
-Créer un fichier .env sur le modèle du fichier .env.sample et le completer avec les bonnes informations.
+Créer un fichier .env sur le modèle du fichier .env.sample et le completer avec les bonnes informations pour configurer les variables d'environnement pour le developpement local.
+
+Pour la configuration des variables d'environnement en production, se referer a la [documentation en ligne de Dokku](http://dokku.viewdocs.io/dokku/configuration/environment-variables/).
 
 ## Lancer le projet 
 
-`npm start` pour lancer les migrations eventuelles puis demarrer le serveur
+`npm start` pour lancer les migrations eventuelles puis demarrer le serveur.
 
-`npm run start:server` pour lancer uniquement le serveur
+`npm run start:server` pour lancer uniquement le serveur.
 
 ## Fabriqué avec
 
